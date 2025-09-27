@@ -29,6 +29,24 @@
       "name": "clark",
       "password": "clard",
       "email": "clark@.com"
+    },
+    {
+      "id": "e1b2",
+      "name": "simon",
+      "password": "simon@gmail",
+      "email": "simon@gmail.com"
+    },
+    {
+      "id": "dd10",
+      "name": "sam",
+      "password": "sam",
+      "email": "sam@test.com"
+    },
+    {
+      "id": "4a56",
+      "name": "Luci",
+      "password": "luci123",
+      "email": "luci@test.com"
     }
   ]
 }

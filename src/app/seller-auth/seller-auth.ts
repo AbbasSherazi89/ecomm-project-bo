@@ -66,11 +66,10 @@ import { Router } from '@angular/router';
 export class SellerAuth {
   constructor(private _sellerService: SellerService, private router: Router) {}
 
+  ngOnInit(): void {
+    this._sellerService.reloadSeller();
+  }
   signUp(data: sellerType): void {
-    this._sellerService.signUpSeller(data).subscribe((result) => {
-      if (result) {
-        this.router.navigate(['seller-home']);
-      }
-    });
+    this._sellerService.signUpSeller(data);
   }
 }
