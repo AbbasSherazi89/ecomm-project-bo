@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: sans-serif;
+}
+.container{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.common-form {
+    display: flex;
+    margin: auto;
+    max-width: 300px;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-input {
+    height: 35px;
+    padding-left: 10px;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+}
