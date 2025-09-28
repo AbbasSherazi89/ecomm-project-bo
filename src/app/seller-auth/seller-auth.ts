@@ -46,6 +46,7 @@ import { Router } from '@angular/router';
 
       <div *ngIf="showlogin" class="login">
         <h1>Seller Login</h1>
+        <p style="color: red;">{{isError}}</p>
         <form
           #sellerLogin="ngForm"
           class="common-form"
@@ -96,6 +97,7 @@ import { Router } from '@angular/router';
 })
 export class SellerAuth {
   showlogin=false;
+  isError:string="";
   constructor(private _sellerService: SellerService, private router: Router) {}
 
   ngOnInit(): void {
@@ -107,7 +109,13 @@ export class SellerAuth {
     this._sellerService.signUpSeller(data);
   }
   logIn(data: sellerType): void {
-    this._sellerService.signUpSeller(data);
+    this._sellerService.userLogin(data);
+    this._sellerService.isLoginError.subscribe(
+      (isError)=>{
+      if(isError){
+        this.isError="Login failed! please check your credentials.";
+      }
+    });
   }
 
   openLogin(){
