@@ -24,7 +24,7 @@ import { RouterModule } from '@angular/router';
   nav{
     display: flex;
     justify-content: space-between;
-    // align-items: center;
+    align-items: center;
     h1{
         color: blueviolet;
         margin: 0;
@@ -57,7 +57,6 @@ import { RouterModule } from '@angular/router';
     }
     li {
     padding-left: 15px;
-    padding-top: 15px;
     }
     a{
       text-decoration: none;
