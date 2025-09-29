@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { Product } from '../services/product';
+import { product, sellerType } from '../seller-type';
 
 @Component({
   selector: 'app-seller-add-product',
@@ -9,7 +11,12 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="add-product">
       <h1>Add New Product</h1>
-      <form class="common-form" #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+      <p class="message-p">{{ productMessage }}</p>
+      <form
+        class="common-form"
+        #addProduct="ngForm"
+        (ngSubmit)="submit(addProduct.value)"
+      >
         <input
           class="form-input"
           type="text"
@@ -70,9 +77,17 @@ import { FormsModule } from '@angular/forms';
   `,
 })
 export class SellerAddProduct {
+  productMessage: string | undefined;
+  constructor(private _product: Product) {}
+  submit(data: product) {
+    this._product.addProduct(data).subscribe((res) => {
+      if (res) {
+        this.productMessage = 'Product added successfully!';
+      }
+    });
 
-  submit(data:object){
-    console.log(data);
-    
+    setTimeout(() => {
+      this.productMessage = undefined;
+    }, 3000);
   }
 }

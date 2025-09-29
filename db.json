@@ -12,5 +12,34 @@
       "password": "123123",
       "email": "ali@test.com"
     }
+  ],
+  "products": [
+    {
+      "id": "8ef8",
+      "name": "Iphone 16 pro max",
+      "price": "$2000",
+      "color": "blue",
+      "category": "mobile",
+      "description": "Hello this is the apple Iphone.",
+      "image": "https://images.unsplash.com/photo-1726828497839-5a9c238326b2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "26d0",
+      "name": "Iphone 17",
+      "price": "250000",
+      "category": "mobile",
+      "color": "orange",
+      "description": "this is iphone 17pro max",
+      "image": "https://images.unsplash.com/photo-1757710436034-f1d7372ec1be?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "69d5",
+      "name": "apple watch",
+      "price": "500",
+      "category": "watch",
+      "color": "white",
+      "description": "This is an apple watch which is quiet expensive.",
+      "image": "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
   ]
 }

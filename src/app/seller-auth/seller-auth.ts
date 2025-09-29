@@ -46,7 +46,7 @@ import { Router } from '@angular/router';
 
       <div *ngIf="showlogin" class="login">
         <h1>Seller Login</h1>
-        <p style="color: red;">{{isError}}</p>
+        <p class="error-p">{{isError}}</p>
         <form
           #sellerLogin="ngForm"
           class="common-form"
