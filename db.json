@@ -15,31 +15,40 @@
   ],
   "products": [
     {
-      "id": "8ef8",
-      "name": "Iphone 16 pro max",
-      "price": "$2000",
-      "color": "blue",
-      "category": "mobile",
-      "description": "Hello this is the apple Iphone.",
-      "image": "https://images.unsplash.com/photo-1726828497839-5a9c238326b2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "id": "d87f",
+      "name": "Laptop",
+      "price": "$2444",
+      "category": "Laptops",
+      "color": "grey",
+      "description": "This is related a latpo",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXUFElvFjbFeJkoPP8-QrWkiOBXUQLC0BIhRTchcO8Yh5v7K1VKXPvTdXdAMJzIY2mL9A&usqp=CAU"
     },
     {
-      "id": "26d0",
-      "name": "Iphone 17",
-      "price": "250000",
-      "category": "mobile",
-      "color": "orange",
-      "description": "this is iphone 17pro max",
-      "image": "https://images.unsplash.com/photo-1757710436034-f1d7372ec1be?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-      "id": "69d5",
-      "name": "apple watch",
-      "price": "500",
+      "id": "8411",
+      "name": "Watch",
+      "price": "$234",
       "category": "watch",
-      "color": "white",
-      "description": "This is an apple watch which is quiet expensive.",
-      "image": "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "color": "silver",
+      "description": "This is a watch",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-rTzys3OWlbCdxhKG-XQ-LasOlM-zt3NrMz615UvUPzwto9PX48mrR0ZpaGSDP62GzA&usqp=CAU"
+    },
+    {
+      "id": "8f5e",
+      "name": "Kids watch",
+      "price": "$109",
+      "category": "watch",
+      "color": "Pink",
+      "description": "LAGENIO 4G Kids Watch K3 – LAGENIO---The Pioneer In 4G Kids Watch",
+      "image": "https://www.lagenio.com/cdn/shop/files/LAGENIO4GKidsWatchK3_3.png?v=1721623357"
+    },
+    {
+      "id": "52fb",
+      "name": "iphone 15",
+      "price": "$700",
+      "category": "Phones",
+      "color": "Mint color",
+      "description": "Apple iPhone 15 - Mint Mobile",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPr3LgBeOw5-L3_u5HtRKs3dcOVIh4RYflHw&s"
     }
   ]
 }

@@ -10,8 +10,9 @@ export interface loginType {
 }
 
 export interface product{
+    id:string;
     name:string;
-    price:number;
+    price:string;
     category:string;
     color:string;
     description:string;

@@ -5,38 +5,47 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-seller-home',
   imports: [CommonModule],
-  template: ` 
-  
-  <div class="product-list">
-    <h1>Product List</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Color</th>
-          <th>Category</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of productList">
-          <td><img src="{{item.image}}" alt="Image of the {{item.name}}"></td>
-          <td>{{item.name}}</td>
-          <td>{{item.price}}</td>
-          <td>{{item.color}}</td>
-          <td>{{item.category}}</td>
-          <td>{{item.description}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  template: `
+    <div class="product-list">
+      <h1>Product List</h1>
+      <p class="error-p">{{ productMessage }}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Color</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productList">
+            <td>
+              <img src="{{ item.image }}" alt="Image of the {{ item.name }}" />
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.color }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.description }}</td>
+            <td class="action-icons">
+              <i class="material-icons" (click)="deleteProduct(item.id)"
+                >delete</i
+              >
+              <i class="material-icons">update</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   `,
   styles: `
   
   table{
-    text-align:left;
+    text-align:center;
     color:blueviolet;
     border-collapse:collapse;
 
@@ -49,22 +58,39 @@ import { CommonModule } from '@angular/common';
       padding:10px;
       min-width:160px;
     }
+    .action-icons i{
+      cursor:pointer;
+      margin-right:10px;
+    }
   }
   `,
 })
 export class SellerHome {
-  productList:undefined|product[];
+  productList: product[] = [];
+  productMessage:undefined|string;
   constructor(private _product: Product) {}
 
   ngOnInit() {
+    this.getProductList();
+  }
+
+  getProductList() {
     this._product.productList().subscribe((res) => {
       console.log(res);
-      if(res){
-        this.productList=res;
+      if (res) {
+        this.productList = res;
       }
     });
   }
-  // getProduct(){
 
-  // }
+  deleteProduct(id: string) {
+    this._product.deleteProduct(id).subscribe((res) => {
+      this.productList = this.productList.filter((item) => item.id !== id);
+      this.productMessage = 'Product deleted successfully!';
+    });
+
+    setTimeout(()=>{
+      this.productMessage=undefined;
+    },3000)
+  }
 }
