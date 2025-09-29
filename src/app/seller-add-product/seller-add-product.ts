@@ -1,15 +1,78 @@
 import { Component } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-seller-add-product',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule],
   template: `
-    <p>
-      seller-add-product works!
-    </p>
+    <div class="add-product">
+      <h1>Add New Product</h1>
+      <form class="common-form" #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Enter product name"
+          name="name"
+          ngModel
+        />
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Enter product price"
+          name="price"
+          ngModel
+        />
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Enter category of the product"
+          name="category"
+          ngModel
+        />
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Enter product color"
+          name="color"
+          ngModel
+        />
+        <textarea
+          rows="5"
+          type="text"
+          name="description"
+          ngModel
+          placeholder="Enter product description"
+        ></textarea>
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Enter product image Url"
+          name="image"
+          ngModel
+        />
+        <button class="form-btn">Add Product</button>
+      </form>
+    </div>
   `,
-  styles: ``
+  styles: `
+  .add-product{
+    text-align:center;
+    h1{
+      color: blueviolet;
+      padding: 50px 0px 60px 0px;
+      margin: 0px;
+      font-size: 34px;
+    }
+  }
+
+  `,
 })
 export class SellerAddProduct {
 
+  submit(data:object){
+    console.log(data);
+    
+  }
 }
