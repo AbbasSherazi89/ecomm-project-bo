@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../services/product';
 import { product, sellerType } from '../seller-type';
 
@@ -77,12 +77,14 @@ import { product, sellerType } from '../seller-type';
   `,
 })
 export class SellerAddProduct {
+    @ViewChild('addProduct') addProductForm!: NgForm;
   productMessage: string | undefined;
   constructor(private _product: Product) {}
   submit(data: product) {
     this._product.addProduct(data).subscribe((res) => {
       if (res) {
         this.productMessage = 'Product added successfully!';
+        this.addProductForm.reset();
       }
     });
 
