@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   template: `
     <nav>
-      <h1 ><a routerLink="">E-comm</a></h1>
+      <h1><a routerLink="">E-comm</a></h1>
       @if (menuType === 'default') {
       <div class="nav-search">
         <input type="text" placeholder="Enter Product name to search" />
@@ -21,18 +21,16 @@ import { CommonModule } from '@angular/common';
           <li><a href="#">Login</a></li>
           <li><a href="#">Cart(0)</a></li>
         </ul>
-        } 
-
-        @case('seller'){
+        } @case('seller'){
         <ul>
-          <li><a href="#">Add Product</a></li>
-          <li><a href="#">List</a></li>
-          <li><a href="#">Logout</a></li>
-          <li><a href="#">Seller Name</a></li>
+          <li><a routerLink="/seller-add-product">Add Product</a></li>
+          <li><a routerLink="/seller-home">List</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+          <li>
+            <span>{{ sellerName | titlecase }}</span>
+          </li>
         </ul>
-        } 
-      
-      }
+        } }
       </div>
     </nav>
   `,
@@ -81,6 +79,10 @@ import { CommonModule } from '@angular/common';
     }
     a{
       text-decoration: none;
+      cursor: pointer;
+      color: blueviolet;
+    }
+    span{
       color: blueviolet;
     }
 
@@ -89,20 +91,30 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
   menuType: string = 'default';
+  sellerName: string = '';
   constructor(private route: Router) {}
 
   ngOnInit() {
     this.route.events.subscribe((val: any) => {
       if (val.url) {
-        console.log(val);
         if (val.url.includes('seller') && localStorage.getItem('seller')) {
+          let sellerStore = localStorage.getItem('seller');
+          let sellerData = null;
+          if (sellerStore) {
+            sellerData = JSON.parse(sellerStore);
+          }
+
           this.menuType = 'seller';
-          console.log('Seller already logged in');
+          this.sellerName = sellerData[0].name;
         } else {
-          console.log('Seller not logged in');
           this.menuType = 'default';
         }
       }
     });
+  }
+
+  logout() {
+    localStorage.removeItem('seller');
+    this.route.navigate(['/']);
   }
 }
