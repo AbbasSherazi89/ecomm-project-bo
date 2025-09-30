@@ -22,4 +22,7 @@ export class Product {
   getProduct(id:string){
     return this.http.get<product>(`http://localhost:3000/products/${id}`);
   }
+  getPopularProducts(){
+    return this.http.get<product[]>(`http://localhost:3000/products?_limit=3`);
+  }
 }
