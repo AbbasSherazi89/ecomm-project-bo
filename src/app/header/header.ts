@@ -65,7 +65,7 @@ import { CommonModule } from '@angular/common';
           button{
                 border: 1px solid blueviolet;
                 color: blueviolet;
-                height:39px;
+                height:35px;
           }
     }
     ul{

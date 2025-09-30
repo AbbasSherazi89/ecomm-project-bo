@@ -1,15 +1,55 @@
 import { Component } from '@angular/core';
+import { Product } from '../services/product';
+import { product } from '../seller-type';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [NgbCarouselModule],
   template: `
-    <p>
-      home works!
-    </p>
+    <div class="carousel-container mt-5">
+      @if (popularProducts) {
+      <ngb-carousel>
+        @for(item of popularProducts; track item){
+
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img
+              class="product-image"
+              [src]="item.image"
+              alt="Random first slide"
+            />
+          </div>
+          <div class="carousel-caption">
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+          </div>
+        </ng-template>
+        }
+      </ngb-carousel>
+      }
+    </div>
   `,
-  styles: ``
+  styles: `
+  ngb-carousel{
+    background:rgba(0,0,0,0.2);
+  }
+  .product-image{
+    object-fit:contain;
+    width:100%;
+    height:600px;
+  }
+
+  `,
 })
 export class Home {
+  popularProducts: undefined | product[];
+  constructor(private _product: Product) {}
 
+  ngOnInit() {
+    this._product.getPopularProducts().subscribe((res) => {
+      this.popularProducts = res;
+      console.log(this.popularProducts);
+    });
+  }
 }

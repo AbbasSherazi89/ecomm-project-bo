@@ -12,5 +12,34 @@
       "password": "123123",
       "email": "ali@test.com"
     }
+  ],
+  "products": [
+    {
+      "name": "AMD Gaming Laptops",
+      "price": "$2444",
+      "category": "Laptops",
+      "color": "grey",
+      "description": "AMD Gaming Laptops",
+      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
+      "id": "d87f"
+    },
+    {
+      "name": "Evolution Smart Watch - Black-Metal",
+      "price": "$200",
+      "category": "watch",
+      "color": "Black",
+      "description": "Evolution Smart Watch - Black-Metal",
+      "image": "https://danytech.com.pk/cdn/shop/files/Evolution-ThumbnailImage-2_3_copy.png?v=1731505750",
+      "id": "8f5e"
+    },
+    {
+      "name": "Apple iPhone 14 Pro 256GB",
+      "price": "$700",
+      "category": "Phones",
+      "color": "Mint color",
+      "description": "Apple iPhone 14 Pro 256GB",
+      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
+      "id": "52fb"
+    }
   ]
 }

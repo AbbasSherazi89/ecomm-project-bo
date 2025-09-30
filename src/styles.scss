@@ -1,9 +1,12 @@
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
 body{
     font-family: sans-serif;
 }
-.container{
+.custom-container{
     margin-left: 5%;
-    margin-right: 5%;
+    margin-right: 5%
 }
 
 .common-form {
@@ -26,3 +29,18 @@ body{
       font-size: 16px;
       cursor: pointer;
   }
+
+  .error-p{
+    color:red;
+    font-size: 14px;;
+  }
+
+  .message-p{
+    color: green;
+    font-size: 14px;
+  }
+.carousel-control-prev-icon, .carousel-control-next-icon{
+  background-color: black;
+  padding: 20px;
+  border-radius: 5px;
+}
