@@ -137,7 +137,7 @@ export class SellerAddProduct {
         this.addProductForm.reset();
         setTimeout(() => {
           this.router.navigate(['/seller-home']);
-        }, 3000);
+        }, 2000);
       }
     });
   }
