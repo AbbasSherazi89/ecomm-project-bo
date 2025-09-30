@@ -100,7 +100,6 @@ export class SellerAddProduct {
 
   loadProductData() {
     this._product.getProduct(this.productId).subscribe((product: product) => {
-      console.log('Products', product);
       this.addProductForm.setValue({
         name: product.name,
         price: product.price,

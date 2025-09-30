@@ -79,7 +79,6 @@ export class SellerHome {
 
   getProductList() {
     this._product.productList().subscribe((res) => {
-      console.log(res);
       if (res) {
         this.productList = res;
       }

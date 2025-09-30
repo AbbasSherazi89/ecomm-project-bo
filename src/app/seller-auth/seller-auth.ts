@@ -102,8 +102,6 @@ export class SellerAuth {
 
   ngOnInit(): void {
     this._sellerService.reloadSeller();
-    // console.log();
-    
   }
   signUp(data: sellerType): void {
     this._sellerService.signUpSeller(data);
