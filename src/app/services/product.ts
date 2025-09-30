@@ -16,4 +16,10 @@ export class Product {
   deleteProduct(id:any){
     return this.http.delete(`http://localhost:3000/products/${id}`);
   }
+    updateProduct(id:any, data:product){
+    return this.http.put(`http://localhost:3000/products/${id}`,data);
+  }
+  getProduct(id:string){
+    return this.http.get<product>(`http://localhost:3000/products/${id}`);
+  }
 }

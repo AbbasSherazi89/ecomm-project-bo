@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-seller-home',
   imports: [CommonModule],
@@ -32,10 +33,12 @@ import { CommonModule } from '@angular/common';
             <td>{{ item.category }}</td>
             <td>{{ item.description }}</td>
             <td class="action-icons">
-              <i class="material-icons" (click)="deleteProduct(item.id)"
+              <i class="material-icons" style="color: red;" (click)="deleteProduct(item.id)"
                 >delete</i
               >
-              <i class="material-icons">update</i>
+              <i class="material-icons" style="color: green;" (click)="updateProduct(item.id)"
+                >update</i
+              >
             </td>
           </tr>
         </tbody>
@@ -67,8 +70,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SellerHome {
   productList: product[] = [];
-  productMessage:undefined|string;
-  constructor(private _product: Product) {}
+  productMessage: undefined | string;
+  constructor(private _product: Product, private router:Router) {}
 
   ngOnInit() {
     this.getProductList();
@@ -89,8 +92,12 @@ export class SellerHome {
       this.productMessage = 'Product deleted successfully!';
     });
 
-    setTimeout(()=>{
-      this.productMessage=undefined;
-    },3000)
+    setTimeout(() => {
+      this.productMessage = undefined;
+    }, 3000);
+  }
+
+  updateProduct(id: string) {
+    this.router.navigate(['/seller-add-product', id]);
   }
 }

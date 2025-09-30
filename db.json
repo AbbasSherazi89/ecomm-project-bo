@@ -15,40 +15,31 @@
   ],
   "products": [
     {
-      "id": "d87f",
-      "name": "Laptop",
+      "name": "AMD Gaming Laptops",
       "price": "$2444",
       "category": "Laptops",
       "color": "grey",
-      "description": "This is related a latpo",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXUFElvFjbFeJkoPP8-QrWkiOBXUQLC0BIhRTchcO8Yh5v7K1VKXPvTdXdAMJzIY2mL9A&usqp=CAU"
+      "description": "AMD Gaming Laptops",
+      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
+      "id": "d87f"
     },
     {
-      "id": "8411",
-      "name": "Watch",
-      "price": "$234",
+      "name": "Evolution Smart Watch - Black-Metal",
+      "price": "$200",
       "category": "watch",
-      "color": "silver",
-      "description": "This is a watch",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-rTzys3OWlbCdxhKG-XQ-LasOlM-zt3NrMz615UvUPzwto9PX48mrR0ZpaGSDP62GzA&usqp=CAU"
+      "color": "Black",
+      "description": "Evolution Smart Watch - Black-Metal",
+      "image": "https://danytech.com.pk/cdn/shop/files/Evolution-ThumbnailImage-2_3_copy.png?v=1731505750",
+      "id": "8f5e"
     },
     {
-      "id": "8f5e",
-      "name": "Kids watch",
-      "price": "$109",
-      "category": "watch",
-      "color": "Pink",
-      "description": "LAGENIO 4G Kids Watch K3 – LAGENIO---The Pioneer In 4G Kids Watch",
-      "image": "https://www.lagenio.com/cdn/shop/files/LAGENIO4GKidsWatchK3_3.png?v=1721623357"
-    },
-    {
-      "id": "52fb",
-      "name": "iphone 15",
+      "name": "Apple iPhone 14 Pro 256GB",
       "price": "$700",
       "category": "Phones",
       "color": "Mint color",
-      "description": "Apple iPhone 15 - Mint Mobile",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPr3LgBeOw5-L3_u5HtRKs3dcOVIh4RYflHw&s"
+      "description": "Apple iPhone 14 Pro 256GB",
+      "image": "https://www.electrogas.pk/cdn/shop/files/iphone-14-pro-Gold-Memory-Built-in-128-256-512GB-1TB-Built-in-6GB-RAM-NVMe.jpg?v=1698178704",
+      "id": "52fb"
     }
   ]
 }

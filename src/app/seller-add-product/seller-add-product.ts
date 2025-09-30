@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from '../services/product';
 import { product, sellerType } from '../seller-type';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-add-product',
@@ -10,7 +11,7 @@ import { product, sellerType } from '../seller-type';
   imports: [FormsModule],
   template: `
     <div class="add-product">
-      <h1>Add New Product</h1>
+      <h1>{{ isEditMode ? 'Update Product' : 'Add New Product' }}</h1>
       <p class="message-p">{{ productMessage }}</p>
       <form
         class="common-form"
@@ -59,7 +60,9 @@ import { product, sellerType } from '../seller-type';
           name="image"
           ngModel
         />
-        <button class="form-btn">Add Product</button>
+        <button class="form-btn">
+          {{ isEditMode ? 'Update Product' : 'Add Product' }}
+        </button>
       </form>
     </div>
   `,
@@ -77,19 +80,65 @@ import { product, sellerType } from '../seller-type';
   `,
 })
 export class SellerAddProduct {
-    @ViewChild('addProduct') addProductForm!: NgForm;
+  @ViewChild('addProduct') addProductForm!: NgForm;
   productMessage: string | undefined;
-  constructor(private _product: Product) {}
+  isEditMode = false;
+  productId: string = '';
+  constructor(
+    private _product: Product,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.productId = this.route.snapshot.paramMap.get('id')!;
+    this.isEditMode = !!this.productId;
+    if (this.isEditMode) {
+      this.loadProductData();
+    }
+  }
+
+  loadProductData() {
+    this._product.getProduct(this.productId).subscribe((product: product) => {
+      console.log('Products', product);
+      this.addProductForm.setValue({
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        color: product.color,
+        description: product.description,
+        image: product.image,
+      });
+    });
+  }
+
   submit(data: product) {
+    if (this.isEditMode) {
+      this.updateProduct(data);
+    } else {
+      this.addNewProduct(data);
+    }
+    setTimeout(() => {
+      this.productMessage = undefined;
+    }, 3000);
+  }
+  addNewProduct(data: product) {
     this._product.addProduct(data).subscribe((res) => {
       if (res) {
         this.productMessage = 'Product added successfully!';
         this.addProductForm.reset();
       }
     });
-
-    setTimeout(() => {
-      this.productMessage = undefined;
-    }, 3000);
+  }
+  updateProduct(data: product) {
+    this._product.updateProduct(this.productId, data).subscribe((res) => {
+      if (res) {
+        this.productMessage = 'Product Updated successfully!';
+        this.addProductForm.reset();
+        setTimeout(() => {
+          this.router.navigate(['/seller-home']);
+        }, 3000);
+      }
+    });
   }
 }
