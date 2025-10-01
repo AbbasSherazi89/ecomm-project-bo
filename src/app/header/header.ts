@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Product } from '../services/product';
+import { product } from '../seller-type';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-header',
   imports: [RouterModule, CommonModule],
@@ -9,7 +12,18 @@ import { CommonModule } from '@angular/common';
       <h1><a routerLink="">E-comm</a></h1>
       @if (menuType === 'default') {
       <div class="nav-search">
-        <input type="text" placeholder="Enter Product name to search" />
+        <input
+          type="text"
+          (keyup)="searchProduct($event)"
+          placeholder="Enter Product name to search"
+        />
+        @if(searchResult?.length) {
+        <ul class="search-items">
+          @for(item of searchResult; track item.id){
+          <li class="search-item">{{ item.name }} - {{ item.price }}</li>
+          }
+        </ul>
+        }
         <button>Search</button>
       </div>
       }
@@ -54,6 +68,7 @@ import { CommonModule } from '@angular/common';
           display: flex;
           flex: 1;
           margin: 0% 5%;
+          position: relative;
           input{
                 display: flex;
                 flex: 1;
@@ -67,7 +82,38 @@ import { CommonModule } from '@angular/common';
                 color: blueviolet;
                 height:35px;
           }
+          .search-items{
+            position: absolute;
+            display: list-item;
+            top: 100%;
+            left: 0;
+            background: white;
+            width: 100%;
+            border: 1px solid blueviolet;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            li{
+              color:blueviolet;
+            }
+          }
+          .search-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            
+            &:hover {
+              background-color: #f8f9fa;
+            }
+            
+            &:last-child {
+              border-bottom: none;
+            }
     }
+  }
     ul{
           display: inline-flex;
           margin: 0px;
@@ -92,7 +138,8 @@ import { CommonModule } from '@angular/common';
 export class Header {
   menuType: string = 'default';
   sellerName: string = '';
-  constructor(private route: Router) {}
+  searchResult: product[] | undefined;
+  constructor(private route: Router, private _product: Product) {}
 
   ngOnInit() {
     this.route.events.subscribe((val: any) => {
@@ -116,5 +163,21 @@ export class Header {
   logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
+  }
+
+  searchProduct(query: KeyboardEvent) {
+    if (query) {
+      const element = query.target as HTMLInputElement;
+      if (element.value === '') {
+        this.searchResult = [];
+        return;
+      }
+      this._product
+        .getSearchItems(element.value)
+        .pipe(debounceTime(300), distinctUntilChanged())
+        .subscribe((res) => {
+          this.searchResult = res;
+        });
+    }
   }
 }

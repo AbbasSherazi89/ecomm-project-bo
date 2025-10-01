@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { product, sellerType } from '../seller-type';
+import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,4 +29,17 @@ export class Product {
    getTrendyProducts(){
     return this.http.get<product[]>(`http://localhost:3000/products?_limit=8`);
   }
+  getSearchItems(query: string) {
+  return this.http.get<any[]>('http://localhost:3000/products').pipe(
+    map(products => {
+      const lowerQuery = query.toLowerCase();
+      return products.filter(product =>
+        product.name.toLowerCase().includes(lowerQuery) ||
+        product.category.toLowerCase().includes(lowerQuery) ||
+        product.description.toLowerCase().includes(lowerQuery) ||
+        product.color.toLowerCase().includes(lowerQuery)
+      );
+    })
+  );
+}
 }
