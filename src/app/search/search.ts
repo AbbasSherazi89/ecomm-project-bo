@@ -2,14 +2,16 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-search',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   template: `
     @for(item of searchResult; track item.id){
     <div class="row search-item">
       <div class="col-sm-3 ">
-        <img src="{{ item.image }}" alt="" />
+        <img routerLink="/details/{{ item.id }}" src="{{ item.image }}" alt="" />
       </div>
       <div class="col-sm-8 details">
         <h6>{{ item.name }}</h6>
