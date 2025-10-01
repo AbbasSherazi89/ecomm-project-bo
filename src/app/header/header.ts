@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
       @if (menuType === 'default') {
       <div class="nav-search">
         <input
+        #searchInput
           type="text"
           (keyup)="searchProduct($event)"
           placeholder="Enter Product name to search"
@@ -24,7 +25,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
           }
         </ul>
         }
-        <button>Search</button>
+        <button (click)="submitSearch(searchInput.value)">Search</button>
       </div>
       }
       <div>
@@ -179,5 +180,12 @@ export class Header {
           this.searchResult = res;
         });
     }
+  }
+
+
+  submitSearch(val:string){
+    console.log(val);
+    this.route.navigate([`search/${val}`]);
+    this.searchResult = [];    
   }
 }
