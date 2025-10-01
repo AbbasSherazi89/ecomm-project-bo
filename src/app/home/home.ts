@@ -53,7 +53,6 @@ export class Home {
   ngOnInit() {
     this._product.getPopularProducts().subscribe((res) => {
       this.popularProducts = res;
-      console.log(this.popularProducts);
     });
   }
 }

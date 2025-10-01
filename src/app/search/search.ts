@@ -1,20 +1,29 @@
 import { Component } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../services/product';
+import { product } from '../seller-type';
 @Component({
   selector: 'app-search',
   imports: [],
   template: `
-  @for(num of [1,2,3,4,5]; track num){
+    @for(item of searchResult; track item.id){
     <div class="row search-item">
-      <div class="col-sm-3 "> <img src="https://danytech.com.pk/cdn/shop/files/Evolution-ThumbnailImage-2_3_copy.png?v=1731505750" alt=""> </div>
+      <div class="col-sm-3 ">
+        <img src="{{ item.image }}" alt="" />
+      </div>
       <div class="col-sm-8 details">
-        <h6> Product name</h6>
-        <p><b>Price: $232</b></p>
-        <p><span>color:Red</span> <span>Category: mobile</span></p>
-        <p>Search page static ui</p>
+        <h6>{{ item.name }}</h6>
+        <p>
+          <b>Price: {{ item.price }}</b>
+        </p>
+        <p>
+          <span>color: {{ item.color }}</span>
+          <span>Category: {{ item.category }}</span>
+        </p>
+        <p>{{ item.description }}</p>
       </div>
     </div>
-  }
+    }
   `,
   styles: `
   
@@ -38,8 +47,24 @@ import { Component } from '@angular/core';
       margin-right:10px;
     }
 }
-  `
+  `,
 })
 export class Search {
+  searchQuery: string = '';
+  searchResult: product[] = [];
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private _product: Product
+  ) {}
+  ngOnInit() {
+    this.searchQuery = this.route.snapshot.paramMap.get('query') || '';
+    this.getSearchData(this.searchQuery);
+  }
 
+  getSearchData(query: string) {
+    this._product.getSearchItems(query).subscribe((res) => {
+      this.searchResult = res;
+    });
+  }
 }

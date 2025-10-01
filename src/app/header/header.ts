@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   template: `
     <nav>
       <h1><a routerLink="">E-comm</a></h1>
       @if (menuType === 'default') {
       <div class="nav-search">
         <input
-        #searchInput
+          #searchInput
           type="text"
+          [(ngModel)]="searchQuery"
           (keyup)="searchProduct($event)"
           placeholder="Enter Product name to search"
         />
@@ -137,6 +139,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   `,
 })
 export class Header {
+  searchQuery: string = '';
   menuType: string = 'default';
   sellerName: string = '';
   searchResult: product[] | undefined;
@@ -182,10 +185,18 @@ export class Header {
     }
   }
 
-
-  submitSearch(val:string){
+  submitSearch(val: string) {
     console.log(val);
-    this.route.navigate([`search/${val}`]);
-    this.searchResult = [];    
+    if (this.searchResult && this.searchResult.length > 0) {
+      this.route.navigate([`search/${val}`]);
+      this.clearSearch();
+    } else {
+      alert('No search result found');
+      this.clearSearch();
+    }
+  }
+  clearSearch() {
+    this.searchQuery = '';
+    this.searchResult = [];
   }
 }
