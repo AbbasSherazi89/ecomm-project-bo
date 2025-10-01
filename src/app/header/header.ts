@@ -186,7 +186,6 @@ export class Header {
   }
 
   submitSearch(val: string) {
-    console.log(val);
     if (this.searchResult && this.searchResult.length > 0) {
       this.route.navigate([`search/${val}`]);
       this.clearSearch();
