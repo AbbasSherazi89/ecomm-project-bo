@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductListWrapper } from './product-list-wrapper/product-list-wrapper';
 
 @Component({
   selector: 'app-home',
-  imports: [NgbCarouselModule],
+  imports: [NgbCarouselModule, ProductListWrapper],
   template: `
     <div class="carousel-container mt-5">
       @if (popularProducts) {
@@ -21,13 +22,16 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
             />
           </div>
           <div class="carousel-caption">
-            <h3>{{item.name}}</h3>
-            <p>{{item.description}}</p>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
           </div>
         </ng-template>
         }
       </ngb-carousel>
       }
+    </div>
+    <div>
+      <app-product-list-wrapper />
     </div>
   `,
   styles: `
