@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
         @if(searchResult?.length) {
         <ul class="search-items">
           @for(item of searchResult; track item.id){
-          <li class="search-item">{{ item.name }} - {{ item.price }}</li>
+          <li class="search-item" (click)="submitSearch(item.name)">{{ item.name }} - {{ item.price }}</li>
           }
         </ul>
         }
