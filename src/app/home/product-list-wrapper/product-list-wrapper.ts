@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { product } from '../../seller-type';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../../services/product';
 
 @Component({
   selector: 'app-product-list-wrapper',
-  imports: [],
+  imports: [RouterLink],
   template: `
     <div class="product-list-wrapper my-4">
       <h1 class="mb-4">Trendy Products</h1>
@@ -15,6 +15,7 @@ import { Product } from '../../services/product';
           <div class="product-item h-100">
             <div class="product-image">
               <img
+                routerLink="/details/{{ num.id }}"
                 src="{{ num.image }}"
                 alt="Product Image"
                 class="img-fluid"
@@ -30,7 +31,11 @@ import { Product } from '../../services/product';
               </div>
             </div>
             <div class="product-footer mt-3">
-              <a href="" class="btn btn-outline-primary btn-sm">View Details</a>
+              <a
+                routerLink="/details/{{ num.id }}"
+                class="btn btn-outline-primary btn-sm"
+                >View Details</a
+              >
               <a href="" class="btn btn-primary btn-sm">Add to Cart</a>
             </div>
           </div>

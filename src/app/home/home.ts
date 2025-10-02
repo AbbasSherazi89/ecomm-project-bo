@@ -3,10 +3,10 @@ import { Product } from '../services/product';
 import { product } from '../seller-type';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductListWrapper } from './product-list-wrapper/product-list-wrapper';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-home',
-  imports: [NgbCarouselModule, ProductListWrapper],
+  imports: [NgbCarouselModule, ProductListWrapper, RouterLink],
   template: `
     <div class="carousel-container mt-5">
       @if (popularProducts) {
@@ -16,6 +16,7 @@ import { ProductListWrapper } from './product-list-wrapper/product-list-wrapper'
         <ng-template ngbSlide>
           <div class="picsum-img-wrapper">
             <img
+              routerLink="/details/{{ item.id }}"
               class="product-image"
               [src]="item.image"
               alt="Random first slide"
