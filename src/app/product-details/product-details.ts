@@ -28,9 +28,23 @@ import { product } from '../seller-type';
           <button class="btn btn-outline-primary btn-sm">Buy now</button>
           <button class="btn btn-primary btn-sm ms-2">Add to cart</button>
           <div class="quantity-group my-2">
-            <button class="btn btn-primary rounded-0 py-2">-</button>
-            <input class="py-1 rounded-0" type="text" value="1" />
-            <button class="btn btn-primary rounded-0 py-2">+</button>
+            <button
+              class="btn btn-primary rounded-0 py-2"
+              (click)="handleQuantity('min')"
+            >
+              -
+            </button>
+            <input
+              class="py-1 rounded-0"
+              type="text"
+              value="{{ productQuantity }}"
+            />
+            <button
+              class="btn btn-primary rounded-0 py-2"
+              (click)="handleQuantity('plus')"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
@@ -58,6 +72,8 @@ import { product } from '../seller-type';
 export class ProductDetails {
   productId: string = '';
   productData: product[] = [];
+  productQuantity: number = 1;
+
   constructor(private route: ActivatedRoute, private _product: Product) {}
 
   ngOnInit() {
@@ -68,6 +84,13 @@ export class ProductDetails {
         console.log(res);
         this.productData = Array.isArray(res) ? res : [res];
       });
+    }
+  }
+  handleQuantity(val: string) {
+    if (this.productQuantity < 20 && val === 'plus') {
+      this.productQuantity += 1;
+    } else if (this.productQuantity > 1 && val === 'min') {
+      this.productQuantity -= 1;
     }
   }
 }
