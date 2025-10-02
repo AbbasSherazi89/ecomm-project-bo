@@ -4,6 +4,8 @@ import { SellerAuth } from './seller-auth/seller-auth';
 import { SellerHome } from './seller-home/seller-home';
 import { authGuard } from './auth-guard';
 import { SellerAddProduct } from './seller-add-product/seller-add-product';
+import { Search } from './search/search';
+import { ProductDetails } from './product-details/product-details';
 
 export const routes: Routes = [
   {
@@ -29,4 +31,12 @@ export const routes: Routes = [
     path: 'seller-add-product/:id',
     canActivate: [authGuard],
   },
+  {
+    component:Search,
+    path:'search/:query'
+  },
+  {
+    component:ProductDetails,
+    path:'details/:productId'
+  }
 ];

@@ -40,6 +40,60 @@
       "description": "Apple iPhone 14 Pro 256GB",
       "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
       "id": "52fb"
+    },
+    {
+      "id": "6869",
+      "name": "Men's Tennis Shoes",
+      "price": "$200",
+      "category": "shoes",
+      "color": "grey & white",
+      "description": "Men's Tennis Shoes | K-Swiss – K-Swiss US",
+      "image": "https://kswiss.com/cdn/shop/files/04432-425-original_978c9af1-8588-448e-b9da-a28d8b5caac9.png?v=1758613018&width=800"
+    },
+    {
+      "id": "c8af",
+      "name": "Nikon Z8 Mirrorless Camera",
+      "price": "$300",
+      "category": "Camers",
+      "color": "black",
+      "description": "Nikon Z8 Mirrorless Camera - Nikon Pakistan",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzd__6Nt_fYgZcWUAj0YNH5ZLTO_WTZWh_eg&s"
+    },
+    {
+      "id": "7409",
+      "name": "TCL Laptops",
+      "price": "$1002",
+      "category": "Laptop",
+      "color": "Black",
+      "description": "TCL Laptops-Octa-Core processor Long-lasting battery-TCL Global",
+      "image": "https://aws-obg-image-lb-2.tcl.com/content/dam/brandsite/region/global/products/laptop/category-display/tcl-book-14-go-pc.png?t=1661332526063&w=800&webp=undefined&dpr=2.625&rendition=1068"
+    },
+    {
+      "id": "3156",
+      "name": "Meet the Surface Laptop",
+      "price": "$1290",
+      "category": "Laptopps",
+      "color": "grey",
+      "description": "Meet the Surface Laptop – An ultralight AI touchscreen laptop | Microsoft Surface",
+      "image": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-platinum-right-render-fy25:VP4-1260x795?fmt=png-alpha"
+    },
+    {
+      "id": "8ff5",
+      "name": "Toys and Chemicals",
+      "price": "$190",
+      "category": "Toy",
+      "color": "orange and many more",
+      "description": "Toys and Chemicals: Regulations to Help Keep Kids Safe - Chemical Safety Facts",
+      "image": "https://www.chemicalsafetyfacts.org/wp-content/uploads/shutterstock_383521510-002-scaled.jpg"
+    },
+    {
+      "id": "77b1",
+      "name": "Glided Chain Sandal",
+      "price": "$300",
+      "category": "Cyndals",
+      "color": "Skin color",
+      "description": "Glided Chain Sandal",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg4ZArWmqTVjfRpKA4j1ML-7lv1obQ0iAgDA&s"
     }
   ]
 }
