@@ -55,7 +55,6 @@ import { User } from '../services/user';
 export class UserAuth {
   constructor(private _user:User){}
   userSignUp(data: sellerType) {
-    console.log(data);
     this._user.userSignup(data);
   }
 }

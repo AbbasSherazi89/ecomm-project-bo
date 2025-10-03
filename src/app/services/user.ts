@@ -10,11 +10,9 @@ export class User {
   constructor(private http: HttpClient, private router:Router) {}
 
   userSignup(user: sellerType) {
-    console.log(user);
     this.http
       .post(`http://localhost:3000/user`, user, { observe: 'response' })
       .subscribe((res) => {
-        console.log(res);
         localStorage.setItem('user',JSON.stringify(res));
         this.router.navigate(['/']);
       });
