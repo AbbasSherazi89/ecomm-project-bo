@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { sellerType } from '../seller-type';
+import { User } from '../services/user';
 
 @Component({
   selector: 'app-user-auth',
@@ -52,7 +53,9 @@ import { sellerType } from '../seller-type';
   `,
 })
 export class UserAuth {
+  constructor(private _user:User){}
   userSignUp(data: sellerType) {
     console.log(data);
+    this._user.userSignup(data);
   }
 }

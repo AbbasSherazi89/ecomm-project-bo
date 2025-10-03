@@ -95,5 +95,19 @@
       "description": "Glided Chain Sandal",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg4ZArWmqTVjfRpKA4j1ML-7lv1obQ0iAgDA&s"
     }
+  ],
+  "user": [
+    {
+      "id": "39d7",
+      "name": "Apple iPhone 14 Pro 256GB",
+      "email": "T.L.Henderson70@outlook.com",
+      "password": "123123"
+    },
+    {
+      "id": "5821",
+      "name": "Watch",
+      "email": "abbas@gmail.com",
+      "password": "123123"
+    }
   ]
 }
