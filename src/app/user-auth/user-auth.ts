@@ -53,7 +53,10 @@ import { User } from '../services/user';
   `,
 })
 export class UserAuth {
-  constructor(private _user:User){}
+  constructor(private _user: User) {}
+  ngOnInit(){
+    this._user.userAuthReload();
+  }
   userSignUp(data: sellerType) {
     this._user.userSignup(data);
   }

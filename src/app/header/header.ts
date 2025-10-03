@@ -40,6 +40,15 @@ import { FormsModule } from '@angular/forms';
           <li><a routerLink="/user-auth">Login/SignUp</a></li>
           <li><a href="#">Cart(0)</a></li>
         </ul>
+        } @case('user'){
+        <ul>
+          <li><a routerLink="/seller-auth">Seller</a></li>
+          <li><a routerLink="/">Home</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+          <li>
+            <span>{{ userName | titlecase }}</span>
+          </li>
+        </ul>
         } @case('seller'){
         <ul>
           <li><a routerLink="/seller-add-product">Add Product</a></li>
@@ -144,6 +153,7 @@ export class Header {
   searchQuery: string = '';
   menuType: string = 'default';
   sellerName: string = '';
+  userName: string = '';
   searchResult: product[] | undefined;
   constructor(private route: Router, private _product: Product) {}
 
@@ -159,6 +169,11 @@ export class Header {
 
           this.menuType = 'seller';
           this.sellerName = sellerData[0].name;
+        } else if (localStorage.getItem('user')) {
+          let userStore = localStorage.getItem('user');
+          let userData = userStore && JSON.parse(userStore);
+          this.userName = userData.body.name;
+          this.menuType = 'user';
         } else {
           this.menuType = 'default';
         }
@@ -167,8 +182,13 @@ export class Header {
   }
 
   logout() {
-    localStorage.removeItem('seller');
-    this.route.navigate(['/']);
+    const userType = this.menuType === 'seller' ? 'seller' : 'user';
+    localStorage.removeItem(userType);
+    if (this.menuType === 'seller') {
+      this.route.navigate(['/']);
+    } else if (this.menuType === 'user') {
+      this.route.navigate(['/user-auth']);
+    }
   }
 
   searchProduct(query: KeyboardEvent) {

@@ -108,6 +108,24 @@
       "name": "Watch",
       "email": "abbas@gmail.com",
       "password": "123123"
+    },
+    {
+      "id": "af2e",
+      "name": "Laptop",
+      "email": "ali@test.com",
+      "password": "123123"
+    },
+    {
+      "id": "7249",
+      "name": "apple watch",
+      "email": "T.L.Henderson70@outlook.com",
+      "password": "123123"
+    },
+    {
+      "id": "8708",
+      "name": "Abbas",
+      "email": "anoopjoy_para@ymail.com",
+      "password": "123123"
     }
   ]
 }
