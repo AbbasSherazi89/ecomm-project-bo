@@ -49,24 +49,26 @@ import { User } from '../services/user';
             format (e.g., user@example.com) }
           </p>
           }
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            ngModel
-            class="form-input"
-            #password="ngModel"
-            required
-            minlength="8"
-          />
+          <div class="password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              name="password"
+              placeholder="Enter password"
+              ngModel
+              class="form-input pass-input"
+              #password="ngModel"
+              required
+              minlength="8"
+            />
+            <i class="material-icons password-toggle" (click)="showPassword = !showPassword">{{showPassword?'visibility':'visibility_off'}}</i>
+          </div>
           @if(password.invalid && password.touched){
           <p class="input-error">
-            @if(password.errors?.['required']){ 🔒 Password is required } 
-            @else if(password.errors?.['minlength']){ 📏 Password must be at least 5
-            characters long }
+            @if(password.errors?.['required']){ 🔒 Password is required }
+            @if(password.errors?.['minlength']){ 📏 Password must be at least 5 characters long }
           </p>
           }
-          <button class="form-btn">SignUp</button>
+          <button [disabled]="userSignup.invalid" class="form-btn">SignUp</button>
           <p>
             Already have an account? <a (click)="openLogin()">Click here</a>
           </p>
@@ -127,12 +129,34 @@ import { User } from '../services/user';
       color:blue;
       cursor:pointer;
     }
-}
+    .password-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: grey;
+      
+      &:hover {
+        color: blueviolet;
+      }
+    }
+    .pass-input{
+      width: 100%;
+      padding-right: 40px;
+    }
+    }
   `,
 })
 export class UserAuth {
   showLogin: boolean = true;
   isError: string = '';
+  showPassword:boolean=false;
   constructor(private _user: User) {}
   ngOnInit() {
     this._user.userAuthReload();
