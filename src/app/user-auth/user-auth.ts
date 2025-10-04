@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { sellerType } from '../seller-type';
+import { loginType, sellerType } from '../seller-type';
 import { User } from '../services/user';
 
 @Component({
@@ -8,35 +8,68 @@ import { User } from '../services/user';
   imports: [FormsModule],
   template: `
     <div class="user-auth">
-      <h1>User Signup</h1>
-      <form
-        class="common-form"
-        #userSignup="ngForm"
-        (ngSubmit)="userSignUp(userSignup.value)"
-      >
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter user name"
-          ngModel
-          class="form-input"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter user email"
-          ngModel
-          class="form-input"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          ngModel
-          class="form-input"
-        />
-        <button class="form-btn">SignUp</button>
-      </form>
+      @if(!showLogin){
+      <div class="signup">
+        <h1>User Signup</h1>
+        <form
+          class="common-form"
+          #userSignup="ngForm"
+          (ngSubmit)="userSignUp(userSignup.value)"
+        >
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter user name"
+            ngModel
+            class="form-input"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter user email"
+            ngModel
+            class="form-input"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            ngModel
+            class="form-input"
+          />
+          <button class="form-btn">SignUp</button>
+          <p>
+            Already have an account? <a (click)="openLogin()">Click here</a>
+          </p>
+        </form>
+      </div>
+      } @if(showLogin){
+      <div class="login">
+        <h1>User Login</h1>
+        <form
+          class="common-form"
+          #userlogin="ngForm"
+          (ngSubmit)="userLogin(userlogin.value)"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter user email"
+            ngModel
+            class="form-input"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            ngModel
+            class="form-input"
+          />
+          <button class="form-btn">Login</button>
+          <p>Don't have an account? <a (click)="openSignup()">Click here</a></p>
+        </form>
+      </div>
+      }
     </div>
   `,
   styles: `
@@ -49,15 +82,32 @@ import { User } from '../services/user';
         margin: 0px;
         font-size: 34px;
     }
+    a{
+      color:blueviolet;
+    }
+    a:hover{
+      color:blue;
+      cursor:pointer;
+    }
 }
   `,
 })
 export class UserAuth {
+  showLogin: boolean = true;
   constructor(private _user: User) {}
-  ngOnInit(){
+  ngOnInit() {
     this._user.userAuthReload();
   }
   userSignUp(data: sellerType) {
     this._user.userSignup(data);
+  }
+  userLogin(data: loginType) {
+    console.log(data);
+  }
+  openSignup() {
+    this.showLogin = false;
+  }
+  openLogin() {
+    this.showLogin = true;
   }
 }
