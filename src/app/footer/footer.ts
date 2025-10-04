@@ -19,34 +19,36 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: `
-  
   .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    padding: 0px 5%;
     height: 100px;
-    width:100%;
+    width: 100%;
     display: flex;
-    background-COlor: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
-      ul{
-        padding:0px 5%;
-        margin-bottom:0px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        list-style-type: none;
-        width: -webkit-fill-available;
-  }
-  a{
+    margin-top: 40px; /* Extra insurance */
+    
+    ul {
+      margin-left:0px;
+      padding-left:0px;
+      margin-bottom: 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style-type: none;
+      width: -webkit-fill-available;
+    }
+    
+    a {
       text-decoration: none;
+      color: #333;
+      
+      &:hover {
+        color: blueviolet;
+      }
+    }
   }
-  a:hover{
-    color:blueviolet;
-  }
-}
   `,
 })
 export class Footer {}

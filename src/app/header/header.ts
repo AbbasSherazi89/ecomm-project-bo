@@ -68,6 +68,7 @@ import { FormsModule } from '@angular/forms';
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
     h1{
         color: blueviolet;
         margin: 0;
