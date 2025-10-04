@@ -1,0 +1,18 @@
+.custom-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.main-content {
+  flex: 1; /* This pushes footer to bottom */
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+

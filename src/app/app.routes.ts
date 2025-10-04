@@ -6,6 +6,7 @@ import { authGuard } from './auth-guard';
 import { SellerAddProduct } from './seller-add-product/seller-add-product';
 import { Search } from './search/search';
 import { ProductDetails } from './product-details/product-details';
+import { UserAuth } from './user-auth/user-auth';
 
 export const routes: Routes = [
   {
@@ -38,5 +39,9 @@ export const routes: Routes = [
   {
     component:ProductDetails,
     path:'details/:productId'
+  },
+  {
+    component:UserAuth,
+    path:'user-auth'
   }
 ];
