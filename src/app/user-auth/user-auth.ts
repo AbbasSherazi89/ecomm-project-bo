@@ -22,21 +22,50 @@ import { User } from '../services/user';
             placeholder="Enter user name"
             ngModel
             class="form-input"
+            #name="ngModel"
+            required
+            minlength="3"
+            maxlength="20"
           />
+          @if(name.invalid && name.touched){
+          <p class="input-error">
+            Enter a valid name with minimum of 3 characters
+          </p>
+          }
           <input
             type="email"
             name="email"
+            email
             placeholder="Enter user email"
             ngModel
             class="form-input"
+            #email="ngModel"
+            required
           />
+          @if(email.invalid && email.touched){
+          <p class="input-error">
+            @if(email.errors?.['required']){ 📧 Email address is required }
+            @else if(email.errors?.['email']){ ❌ Please enter a valid email
+            format (e.g., user@example.com) }
+          </p>
+          }
           <input
             type="password"
             name="password"
-            placeholder="Enter your password"
+            placeholder="Enter password"
             ngModel
             class="form-input"
+            #password="ngModel"
+            required
+            minlength="8"
           />
+          @if(password.invalid && password.touched){
+          <p class="input-error">
+            @if(password.errors?.['required']){ 🔒 Password is required } 
+            @else if(password.errors?.['minlength']){ 📏 Password must be at least 5
+            characters long }
+          </p>
+          }
           <button class="form-btn">SignUp</button>
           <p>
             Already have an account? <a (click)="openLogin()">Click here</a>
@@ -51,7 +80,7 @@ import { User } from '../services/user';
           #userlogin="ngForm"
           (ngSubmit)="userLogin(userlogin.value)"
         >
-        <p class="error-p">{{isError}}</p>
+          <p class="error-p">{{ isError }}</p>
           <input
             type="email"
             name="email"
@@ -117,9 +146,9 @@ export class UserAuth {
       console.log(res);
       if (res) {
         this.isError = 'Login failed! please check your credentials.';
-        setTimeout(()=>{
-          this.isError='';
-        },2000);
+        setTimeout(() => {
+          this.isError = '';
+        }, 2000);
       }
     });
   }

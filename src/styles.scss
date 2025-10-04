@@ -37,9 +37,10 @@ body {
   cursor: not-allowed;
 }
 
-.error-p {
+.error-p, .input-error {
   color: red;
-  font-size: 14px;
+  font-size: 12px;
+  margin: 0px;
 }
 
 .message-p {
