@@ -51,21 +51,30 @@ import { User } from '../services/user';
           #userlogin="ngForm"
           (ngSubmit)="userLogin(userlogin.value)"
         >
+        <p class="error-p">{{isError}}</p>
           <input
             type="email"
             name="email"
             placeholder="Enter user email"
             ngModel
+            #email="ngModel"
+            required
             class="form-input"
+            [class.error]="email.invalid && email.touched"
+            [class.success]="email.valid && email.touched"
           />
           <input
             type="password"
             name="password"
             placeholder="Enter your password"
             ngModel
+            #password="ngModel"
+            required
             class="form-input"
+            [class.error]="password.invalid && password.touched"
+            [class.success]="password.valid && password.touched"
           />
-          <button class="form-btn">Login</button>
+          <button [disabled]="userlogin.invalid" class="form-btn">Login</button>
           <p>Don't have an account? <a (click)="openSignup()">Click here</a></p>
         </form>
       </div>
@@ -94,6 +103,7 @@ import { User } from '../services/user';
 })
 export class UserAuth {
   showLogin: boolean = true;
+  isError: string = '';
   constructor(private _user: User) {}
   ngOnInit() {
     this._user.userAuthReload();
@@ -102,7 +112,16 @@ export class UserAuth {
     this._user.userSignup(data);
   }
   userLogin(data: loginType) {
-      this._user.userLogin(data);
+    this._user.userLogin(data);
+    this._user.inValidUser.subscribe((res) => {
+      console.log(res);
+      if (res) {
+        this.isError = 'Login failed! please check your credentials.';
+        setTimeout(()=>{
+          this.isError='';
+        },2000);
+      }
+    });
   }
   openSignup() {
     this.showLogin = false;
