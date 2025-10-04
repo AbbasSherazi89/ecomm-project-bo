@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { sellerType } from '../seller-type';
+import { loginType, sellerType } from '../seller-type';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -15,6 +15,19 @@ export class User {
       .subscribe((res) => {
         localStorage.setItem('user', JSON.stringify(res));
         this.router.navigate(['/']);
+      });
+  }
+  userLogin(user: loginType) {
+    return this.http
+      .get<loginType>(
+        `http://localhost:3000/user?email=${user.email}&password=${user.password}`,
+        { observe: 'response' }
+      )
+      .subscribe((res) => {
+        if (res && res.body) {
+          localStorage.setItem('user', JSON.stringify(res));
+          this.router.navigate(['/']);
+        }
       });
   }
   userAuthReload() {

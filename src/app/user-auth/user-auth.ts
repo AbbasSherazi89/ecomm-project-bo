@@ -102,7 +102,7 @@ export class UserAuth {
     this._user.userSignup(data);
   }
   userLogin(data: loginType) {
-    console.log(data);
+      this._user.userLogin(data);
   }
   openSignup() {
     this.showLogin = false;
