@@ -11,35 +11,48 @@ export class Product {
   addProduct(data: product) {
     return this.http.post(`http://localhost:3000/products`, data);
   }
-  productList(){
+  productList() {
     return this.http.get<product[]>(`http://localhost:3000/products`);
   }
-  deleteProduct(id:any){
+  deleteProduct(id: any) {
     return this.http.delete(`http://localhost:3000/products/${id}`);
   }
-    updateProduct(id:any, data:product){
-    return this.http.put(`http://localhost:3000/products/${id}`,data);
+  updateProduct(id: any, data: product) {
+    return this.http.put(`http://localhost:3000/products/${id}`, data);
   }
-  getProduct(id:string){
+  getProduct(id: string) {
     return this.http.get<product>(`http://localhost:3000/products/${id}`);
   }
-  getPopularProducts(){
+  getPopularProducts() {
     return this.http.get<product[]>(`http://localhost:3000/products?_limit=3`);
   }
-   getTrendyProducts(){
+  getTrendyProducts() {
     return this.http.get<product[]>(`http://localhost:3000/products?_limit=8`);
   }
   getSearchItems(query: string) {
-  return this.http.get<any[]>('http://localhost:3000/products').pipe(
-    map(products => {
-      const lowerQuery = query.toLowerCase();
-      return products.filter(product =>
-        product.name.toLowerCase().includes(lowerQuery) ||
-        product.category.toLowerCase().includes(lowerQuery) ||
-        product.description.toLowerCase().includes(lowerQuery) ||
-        product.color.toLowerCase().includes(lowerQuery)
-      );
-    })
-  );
-}
+    return this.http.get<any[]>('http://localhost:3000/products').pipe(
+      map((products) => {
+        const lowerQuery = query.toLowerCase();
+        return products.filter(
+          (product) =>
+            product.name.toLowerCase().includes(lowerQuery) ||
+            product.category.toLowerCase().includes(lowerQuery) ||
+            product.description.toLowerCase().includes(lowerQuery) ||
+            product.color.toLowerCase().includes(lowerQuery)
+        );
+      })
+    );
+  }
+
+  localAddtoCart(data: product) {
+    let cartData = [];
+    let localCart = localStorage.getItem('localCart');
+    if (!localCart) {
+      localStorage.setItem('localCart', JSON.stringify([data]));
+    } else {
+      cartData=JSON.parse(localCart);
+      cartData.push(data);
+      localStorage.setItem('localCart', JSON.stringify(cartData));
+    }
+  }
 }
