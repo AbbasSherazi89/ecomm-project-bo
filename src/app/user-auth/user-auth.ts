@@ -58,7 +58,7 @@ import { User } from '../services/user';
               class="form-input pass-input"
               #password="ngModel"
               required
-              minlength="8"
+              minlength="5"
             />
             <i class="material-icons password-toggle" (click)="showPassword = !showPassword">{{showPassword?'visibility':'visibility_off'}}</i>
           </div>

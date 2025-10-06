@@ -38,15 +38,20 @@ import { FormsModule } from '@angular/forms';
           <li><a routerLink="/seller-auth">Seller</a></li>
           <li><a routerLink="">Home</a></li>
           <li><a routerLink="/user-auth">Login/SignUp</a></li>
-          <li><a href="#">Cart(0)</a></li>
+          <li>
+            <a href="#">Cart({{ cartItems }})</a>
+          </li>
         </ul>
         } @case('user'){
         <ul>
           <li><a routerLink="/seller-auth">Seller</a></li>
           <li><a routerLink="/">Home</a></li>
-          <li><a (click)="logout()">Logout</a></li>
           <li>
             <span>{{ userName | titlecase }}</span>
+          </li>
+          <li><a (click)="logout()">Logout</a></li>
+          <li>
+            <a href="#">Cart({{ cartItems }})</a>
           </li>
         </ul>
         } @case('seller'){
@@ -156,9 +161,21 @@ export class Header {
   sellerName: string = '';
   userName: string = '';
   searchResult: product[] | undefined;
+  cartItems = 0;
   constructor(private route: Router, private _product: Product) {}
 
   ngOnInit() {
+    this.handleRouteChange();
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      this.cartItems = JSON.parse(cartData).length;
+    }
+    this._product.cartData.subscribe((res)=>{
+      this.cartItems=res.length;
+    })
+  }
+
+  handleRouteChange() {
     this.route.events.subscribe((val: any) => {
       if (val.url) {
         if (val.url.includes('seller') && localStorage.getItem('seller')) {

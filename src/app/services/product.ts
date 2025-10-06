@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { product, sellerType } from '../seller-type';
 import { map } from 'rxjs';
@@ -6,7 +6,8 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class Product {
-  constructor(private http: HttpClient) {}
+  cartData = new EventEmitter<product[]>();
+  constructor(private http: HttpClient ) {}
 
   addProduct(data: product) {
     return this.http.post(`http://localhost:3000/products`, data);
@@ -53,6 +54,7 @@ export class Product {
       cartData=JSON.parse(localCart);
       cartData.push(data);
       localStorage.setItem('localCart', JSON.stringify(cartData));
+      this.cartData.emit(cartData);
     }
   }
 }
