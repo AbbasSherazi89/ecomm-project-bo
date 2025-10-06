@@ -26,8 +26,11 @@ import { product } from '../seller-type';
           <h6>Category: {{ productData.category }}</h6>
           <h6>Description: {{ productData.description }}</h6>
           <button class="btn btn-outline-primary btn-sm">Buy now</button>
-          <button class="btn btn-primary btn-sm ms-2" (click)="addToCart()">
-            Add to cart
+          <button
+            class="btn btn-primary btn-sm ms-2"
+            (click)="removeCart ? removeToCart(productData.id) : addToCart()"
+          >
+            {{ removeCart ? 'Remove to Cart' : 'Add to Cart' }}
           </button>
           <div class="quantity-group my-2">
             <button
@@ -75,14 +78,29 @@ export class ProductDetails {
   productId: string = '';
   productData: undefined | product;
   productQuantity: number = 1;
+  removeCart = false;
   constructor(private route: ActivatedRoute, private _product: Product) {}
 
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('productId') || '';
-
+    this.getProductDetails();
+  }
+  getProductDetails() {
     if (this.productId) {
       this._product.getProduct(this.productId).subscribe((res) => {
         this.productData = res;
+        let cartData = localStorage.getItem('localCart');
+        if (this.productId && cartData) {
+          let items = JSON.parse(cartData);
+          items = items.filter((item: product) => {
+            return this.productId === item.id.toString();
+          });
+          if (items.length) {
+            this.removeCart = true;
+          } else {
+            this.removeCart = false;
+          }
+        }
       });
     }
   }
@@ -99,7 +117,14 @@ export class ProductDetails {
       this.productData.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
         this._product.localAddtoCart(this.productData);
+        this.removeCart = true;
       }
     }
+  }
+
+  removeToCart(id: string) {
+    this._product.removeItemFromCart(id);
+    this.removeCart = false;
+    this.getProductDetails();
   }
 }

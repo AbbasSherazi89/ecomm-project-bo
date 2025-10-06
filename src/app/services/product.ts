@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class Product {
   cartData = new EventEmitter<product[]>();
-  constructor(private http: HttpClient ) {}
+  constructor(private http: HttpClient) {}
 
   addProduct(data: product) {
     return this.http.post(`http://localhost:3000/products`, data);
@@ -51,10 +51,21 @@ export class Product {
     if (!localCart) {
       localStorage.setItem('localCart', JSON.stringify([data]));
     } else {
-      cartData=JSON.parse(localCart);
+      cartData = JSON.parse(localCart);
       cartData.push(data);
       localStorage.setItem('localCart', JSON.stringify(cartData));
       this.cartData.emit(cartData);
+    }
+  }
+  removeItemFromCart(pId: string) {
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      let items: product[] = JSON.parse(cartData);
+      items = items.filter((item: product) => {
+        return pId !== item.id;
+      });
+      localStorage.setItem('localCart', JSON.stringify(items));
+      this.cartData.emit(items);
     }
   }
 }
