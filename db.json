@@ -133,5 +133,31 @@
       "email": "hello@test.com",
       "password": "123123"
     }
+  ],
+  "cart": [
+    {
+      "id": "2f88",
+      "name": "Apple iPhone 14 Pro 256GB",
+      "price": "$700",
+      "category": "Phones",
+      "color": "Mint color",
+      "description": "Apple iPhone 14 Pro 256GB",
+      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
+      "quantity": 2,
+      "producId": "52fb",
+      "userId": "2894"
+    },
+    {
+      "id": "5d9c",
+      "name": "Apple iPhone 14 Pro 256GB",
+      "price": "$700",
+      "category": "Phones",
+      "color": "Mint color",
+      "description": "Apple iPhone 14 Pro 256GB",
+      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
+      "quantity": 1,
+      "producId": "52fb",
+      "userId": "2894"
+    }
   ]
 }

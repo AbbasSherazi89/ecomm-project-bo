@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
-
+import { cart } from '../seller-type';
 @Component({
   selector: 'app-product-details',
   imports: [],
@@ -118,6 +118,18 @@ export class ProductDetails {
       if (!localStorage.getItem('user')) {
         this._product.localAddtoCart(this.productData);
         this.removeCart = true;
+      } else {
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).body[0].id;
+        let cartData: cart = {
+          ...this.productData,
+          producId: this.productData.id,
+          userId,
+        };
+        delete cartData.id;
+        this._product.addToCart(cartData).subscribe((res) => {
+          alert("Data added to cart");
+        });
       }
     }
   }
