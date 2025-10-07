@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { loginType, sellerType } from '../seller-type';
+import { cart, loginType, product, sellerType } from '../seller-type';
 import { User } from '../services/user';
+import { Product } from '../services/product';
 
 @Component({
   selector: 'app-user-auth',
@@ -60,15 +61,22 @@ import { User } from '../services/user';
               required
               minlength="5"
             />
-            <i class="material-icons password-toggle" (click)="showPassword = !showPassword">{{showPassword?'visibility':'visibility_off'}}</i>
+            <i
+              class="material-icons password-toggle"
+              (click)="showPassword = !showPassword"
+              >{{ showPassword ? 'visibility' : 'visibility_off' }}</i
+            >
           </div>
           @if(password.invalid && password.touched){
           <p class="input-error">
             @if(password.errors?.['required']){ 🔒 Password is required }
-            @if(password.errors?.['minlength']){ 📏 Password must be at least 5 characters long }
+            @if(password.errors?.['minlength']){ 📏 Password must be at least 5
+            characters long }
           </p>
           }
-          <button [disabled]="userSignup.invalid" class="form-btn">SignUp</button>
+          <button [disabled]="userSignup.invalid" class="form-btn">
+            SignUp
+          </button>
           <p>
             Already have an account? <a (click)="openLogin()">Click here</a>
           </p>
@@ -156,8 +164,8 @@ import { User } from '../services/user';
 export class UserAuth {
   showLogin: boolean = true;
   isError: string = '';
-  showPassword:boolean=false;
-  constructor(private _user: User) {}
+  showPassword: boolean = false;
+  constructor(private _user: User, private _product: Product) {}
   ngOnInit() {
     this._user.userAuthReload();
   }
@@ -167,12 +175,13 @@ export class UserAuth {
   userLogin(data: loginType) {
     this._user.userLogin(data);
     this._user.inValidUser.subscribe((res) => {
-      console.log(res);
       if (res) {
         this.isError = 'Login failed! please check your credentials.';
         setTimeout(() => {
           this.isError = '';
         }, 2000);
+      } else {
+        this.localCartToRemoteCart();
       }
     });
   }
@@ -181,5 +190,31 @@ export class UserAuth {
   }
   openLogin() {
     this.showLogin = true;
+  }
+  localCartToRemoteCart() {
+    let data = localStorage.getItem('localCart');
+    if (data) {
+      let cartDataList: product[] = JSON.parse(data);
+      let user = localStorage.getItem('user');
+      let userId = user && JSON.parse(user).id;
+      cartDataList.forEach((product: product, index) => {
+        let cartData: cart = {
+          ...product,
+          producId: product.id,
+          userId,
+        };
+        delete cartData.id;
+        setTimeout(() => {
+          this._product.addToCart(cartData).subscribe((res) => {
+            if (res) {
+              alert('Data added to cart');
+            }
+          });
+        }, 1000);
+        if (cartDataList.length === index + 1) {
+          localStorage.removeItem('localCart');
+        }
+      });
+    }
   }
 }
