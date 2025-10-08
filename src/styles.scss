@@ -1,41 +1,54 @@
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 
-body{
-    font-family: sans-serif;
+body {
+  font-family: sans-serif;
 }
 
 .common-form {
-    display: flex;
-    margin: auto;
-    max-width: 300px;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  margin: auto;
+  max-width: 300px;
+  flex-direction: column;
+  gap: 15px;
 }
 .form-input {
-    height: 35px;
-    padding-left: 10px;
-    color: blueviolet;
-    border: 1px solid blueviolet;
+  height: 35px;
+  padding-left: 10px;
+  color: blueviolet;
+  border: 1px solid blueviolet;
+  &.error {
+    border-color: #dc3545;
+  }
+
+  &.success {
+    border-color: #28a745;
+  }
 }
- .form-btn {
-      height: 35px;
-      color: blueviolet;
-      border: 1px solid blueviolet;
-      font-size: 16px;
-      cursor: pointer;
-  }
+.form-btn {
+  height: 35px;
+  color: blueviolet;
+  border: 1px solid blueviolet;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  .error-p{
-    color:red;
-    font-size: 14px;;
-  }
+.form-btn:disabled{
+  cursor: not-allowed;
+}
 
-  .message-p{
-    color: green;
-    font-size: 14px;
-  }
-.carousel-control-prev-icon, .carousel-control-next-icon{
+.error-p, .input-error {
+  color: red;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.message-p {
+  color: green;
+  font-size: 14px;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
   background-color: black;
   padding: 20px;
   border-radius: 5px;

@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
         <li><a href="#">Youtube</a></li>
         <li><a href="#">FAQs</a></li>
       </ul>
+      <p class="copyright">@2025, E-comm Project</p>
     </div>
   `,
   styles: `
@@ -24,6 +25,7 @@ import { Component } from '@angular/core';
     height: 100px;
     width: 100%;
     display: flex;
+    flex-direction:column;
     background-color: rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
@@ -47,6 +49,10 @@ import { Component } from '@angular/core';
       &:hover {
         color: blueviolet;
       }
+    }
+    .copyright{
+      margin:10px 0 0 0;
+      font-size:14px;
     }
   }
   `,

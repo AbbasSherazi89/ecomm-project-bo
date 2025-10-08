@@ -2,31 +2,36 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../services/product';
 import { product } from '../seller-type';
-
+import { cart } from '../seller-type';
 @Component({
   selector: 'app-product-details',
   imports: [],
   template: `
-    @if(productData){ @for(item of productData; track item.id){
+    @if(productData){
     <div class="row product-details">
       <div class="col-sm-6">
-        <img src="{{ item.image }}}" alt="" class="img-fluid" />
+        <img src="{{ productData.image }}}" alt="" class="img-fluid" />
       </div>
       <div class="col-sm-6">
         <div class="details">
-          <h1>{{ item.name }}</h1>
-          <h3>Price: {{ item.price }}</h3>
+          <h1>{{ productData.name }}</h1>
+          <h3>Price: {{ productData.price }}</h3>
           <div class="d-flex align-items-center">
             Color:
             <h3
               class="product-color ms-3"
-              [style.backgroundColor]="item.color"
+              [style.backgroundColor]="productData.color"
             ></h3>
           </div>
-          <h6>Category: {{ item.category }}</h6>
-          <h6>Description: {{ item.description }}</h6>
+          <h6>Category: {{ productData.category }}</h6>
+          <h6>Description: {{ productData.description }}</h6>
           <button class="btn btn-outline-primary btn-sm">Buy now</button>
-          <button class="btn btn-primary btn-sm ms-2">Add to cart</button>
+          <button
+            class="btn btn-primary btn-sm ms-2"
+            (click)="removeCart ? removeToCart(productData.id) : addToCart()"
+          >
+            {{ removeCart ? 'Remove to Cart' : 'Add to Cart' }}
+          </button>
           <div class="quantity-group my-2">
             <button
               class="btn btn-primary rounded-0 py-2"
@@ -49,7 +54,7 @@ import { product } from '../seller-type';
         </div>
       </div>
     </div>
-    } }
+    }
   `,
   styles: `
   
@@ -71,18 +76,46 @@ import { product } from '../seller-type';
 })
 export class ProductDetails {
   productId: string = '';
-  productData: product[] = [];
+  productData: undefined | product;
   productQuantity: number = 1;
-
+  removeCart = false;
+  cartData: product | undefined;
   constructor(private route: ActivatedRoute, private _product: Product) {}
 
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('productId') || '';
-
+    this.getProductDetails();
+  }
+  getProductDetails() {
     if (this.productId) {
       this._product.getProduct(this.productId).subscribe((res) => {
-        console.log(res);
-        this.productData = Array.isArray(res) ? res : [res];
+        this.productData = res;
+        let cartData = localStorage.getItem('localCart');
+        if (this.productId && cartData) {
+          let items = JSON.parse(cartData);
+          items = items.filter((item: product) => {
+            return this.productId === item.id.toString();
+          });
+          if (items.length) {
+            this.removeCart = true;
+          } else {
+            this.removeCart = false;
+          }
+        }
+        let user = localStorage.getItem('user');
+        if (user) {
+          let userId = user && JSON.parse(user).body[0].id;
+          this._product.getCartList(userId);
+          this._product.cartData.subscribe((res) => {
+            let item = res.filter((prod: product) => {
+              return this.productId === prod.producId;
+            });
+            if (item.length) {
+              this.cartData = item[0];
+              this.removeCart = true;
+            }
+          });
+        }
       });
     }
   }
@@ -92,5 +125,45 @@ export class ProductDetails {
     } else if (this.productQuantity > 1 && val === 'min') {
       this.productQuantity -= 1;
     }
+  }
+
+  addToCart() {
+    if (this.productData) {
+      this.productData.quantity = this.productQuantity;
+      if (!localStorage.getItem('user')) {
+        this._product.localAddtoCart(this.productData);
+        this.removeCart = true;
+      } else {
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).body[0].id;
+        let cartData: cart = {
+          ...this.productData,
+          producId: this.productData.id,
+          userId,
+        };
+        delete cartData.id;
+        this._product.addToCart(cartData).subscribe((res) => {
+          alert('Data added to cart');
+          this._product.getCartList(userId);
+          this.removeCart = true;
+        });
+      }
+    }
+  }
+
+  removeToCart(id: string) {
+    if (!localStorage.getItem('user')) {
+      this._product.removeItemFromCart(id);
+      this.removeCart = false;
+    } else {
+      this.cartData &&
+        this._product.removeToCart(this.cartData.id).subscribe((res) => {
+          let user = localStorage.getItem('user');
+          let userId = user && JSON.parse(user).body[0].id;
+          this._product.getCartList(userId);
+          this.removeCart = false;
+        });
+    }
+    this.getProductDetails();
   }
 }
