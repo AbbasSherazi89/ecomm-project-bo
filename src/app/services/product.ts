@@ -50,6 +50,7 @@ export class Product {
     let localCart = localStorage.getItem('localCart');
     if (!localCart) {
       localStorage.setItem('localCart', JSON.stringify([data]));
+      this.cartData.emit([data]);
     } else {
       cartData = JSON.parse(localCart);
       cartData.push(data);
