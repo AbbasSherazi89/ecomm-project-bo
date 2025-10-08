@@ -69,17 +69,28 @@ export class Product {
       this.cartData.emit(items);
     }
   }
-  addToCart(cartData:cart){
+  addToCart(cartData: cart) {
     return this.http.post(`http://localhost:3000/cart`, cartData);
   }
-  getCartList(userId:string){
-    return this.http.get<product[]>(`http://localhost:3000/cart?userId=${userId}`,{observe:'response'}).subscribe((res)=>{
-      if(res&&res.body){
-        this.cartData.emit(res.body)
-      }
-    });
+  getCartList(userId: string) {
+    return this.http
+      .get<product[]>(`http://localhost:3000/cart?userId=${userId}`, {
+        observe: 'response',
+      })
+      .subscribe((res) => {
+        if (res && res.body) {
+          this.cartData.emit(res.body);
+        }
+      });
   }
   removeToCart(cartId: string) {
     return this.http.delete(`http://localhost:3000/cart/${cartId}`);
+  }
+  currentCart() {
+    let userStore = localStorage.getItem('user');
+    let userData = userStore && JSON.parse(userStore).body[0];
+    return this.http.get<cart[]>(
+      `http://localhost:3000/cart?userId=${userData.id}`
+    );
   }
 }

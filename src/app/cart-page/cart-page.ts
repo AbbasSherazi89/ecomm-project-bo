@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { cart, priceSummary, product } from '../seller-type';
+import { Product } from '../services/product';
 
 @Component({
   selector: 'app-cart-page',
@@ -8,32 +10,44 @@ import { Component } from '@angular/core';
       <h1>My Cart Details</h1>
       <div class="row">
         <div class="col-sm-8 details">
-          @for(item of [1,2,3,4,5]; track item){
+          @for(item of cartData; track item){
 
           <ul>
             <li>
-              <img
-                src="https://media.umbraco.io/suzuki-gb/frvbbyh2/hayabusa_m5_c0t.png?width=828&quality=75&format=webp"
-                alt=""
-              />
+              <img src="{{ item.image }}" alt="" />
             </li>
-            <li>Product Name: Suzuki Bikes UK</li>
-            <li>Price: $2000</li>
+            <li>Product Name: {{ item.name }}</li>
+            <li>Price: {{ item.price }}</li>
             <li><button class="btn btn-outline-danger">Remove</button></li>
           </ul>
           }
         </div>
         <div class="col-sm-4 summary">
           <h3>Summary</h3>
+          @if(cartSummary){
+
           <ul>
-            <li><span>Amount: </span><span>$2000</span></li>
-            <li><span>Tax: </span><span>10%</span></li>
-            <li><span>Delivery: </span><span>$150</span></li>
-            <li><span>Discount: </span><span>$50</span></li>
             <li>
-              <span><h4>Total:</h4></span><span><h4>$2200</h4></span>
+              <span>Amount: </span><span>$ {{ cartSummary.price }}</span>
+            </li>
+            <li>
+              <span>Tax: </span><span>$ {{ cartSummary.tax }}</span>
+            </li>
+            <li>
+              <span>Delivery Charges: </span
+              ><span>$ {{ cartSummary.deliveryCharges }}</span>
+            </li>
+            <li>
+              <span>Discount: </span><span>$ {{ cartSummary.discount }}</span>
+            </li>
+            <li>
+              <span><h4>Total:</h4></span
+              ><span
+                ><h4>$ {{ cartSummary.total }}</h4></span
+              >
             </li>
           </ul>
+          }
         </div>
       </div>
     </div>
@@ -79,4 +93,47 @@ import { Component } from '@angular/core';
   }
   `,
 })
-export class CartPage {}
+export class CartPage {
+  cartData: undefined | cart[];
+  cartSummary: priceSummary = {
+    price: 0,
+    discount: 0,
+    tax: 0,
+    deliveryCharges: 0,
+    total: 0,
+  };
+  constructor(private _product: Product) {}
+  ngOnInit() {
+    this.getUserCartList();
+  }
+  getUserCartList() {
+    this._product.currentCart().subscribe((res) => {
+      this.cartData = res;
+      let price = 0;
+      res.forEach((item) => {        
+        if (item.quantity) {
+          price += this.parsePrice(item.price) * item.quantity;
+        }
+      });
+      this.updateCartSummary(price);
+    });
+  }
+  updateCartSummary(price: number): void {
+    const discount = price / 10;
+    const tax = price / 10;
+    const delivery = 200;
+
+    this.cartSummary = {
+      price: price,
+      discount: discount,
+      tax: tax,
+      deliveryCharges: delivery,
+      total: price + tax + delivery - discount,
+    };
+
+    console.log('Cart Summary:', this.cartSummary);
+  }
+  parsePrice(priceString: string): number {
+    return parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
+  }
+}

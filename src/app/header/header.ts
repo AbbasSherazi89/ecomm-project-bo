@@ -192,8 +192,6 @@ export class Header {
           let userData = userStore && JSON.parse(userStore);
           this.userName = userData.body.name;
           this.menuType = 'user';
-          console.log('user Data', userData.body[0]);
-
           this._product.getCartList(userData.body[0].id);
         } else {
           this.menuType = 'default';

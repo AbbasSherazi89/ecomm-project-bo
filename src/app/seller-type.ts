@@ -18,7 +18,7 @@ export interface product {
   description: string;
   image: string;
   quantity: undefined | number;
-  producId:undefined | string;
+  producId: undefined | string;
 }
 
 export interface cart {
@@ -32,4 +32,12 @@ export interface cart {
   quantity: undefined | number;
   producId: string;
   userId: string;
+}
+
+export interface priceSummary {
+  price: number;
+  discount: number;
+  tax: number;
+  deliveryCharges: number;
+  total: number;
 }
