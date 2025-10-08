@@ -7,6 +7,7 @@ import { SellerAddProduct } from './seller-add-product/seller-add-product';
 import { Search } from './search/search';
 import { ProductDetails } from './product-details/product-details';
 import { UserAuth } from './user-auth/user-auth';
+import { CartPage } from './cart-page/cart-page';
 
 export const routes: Routes = [
   {
@@ -43,5 +44,9 @@ export const routes: Routes = [
   {
     component:UserAuth,
     path:'user-auth'
+  },
+  {
+    component:CartPage,
+    path:'cart-page'
   }
 ];

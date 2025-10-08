@@ -39,7 +39,7 @@ import { FormsModule } from '@angular/forms';
           <li><a routerLink="">Home</a></li>
           <li><a routerLink="/user-auth">Login/SignUp</a></li>
           <li>
-            <a href="#">Cart({{ cartItems }})</a>
+            <a routerLink="/cart-page">Cart({{ cartItems }})</a>
           </li>
         </ul>
         } @case('user'){
@@ -51,7 +51,7 @@ import { FormsModule } from '@angular/forms';
           </li>
           <li><a (click)="logout()">Logout</a></li>
           <li>
-            <a href="#">Cart({{ cartItems }})</a>
+            <a routerLink="/cart-page">Cart({{ cartItems }})</a>
           </li>
         </ul>
         } @case('seller'){
@@ -192,8 +192,8 @@ export class Header {
           let userData = userStore && JSON.parse(userStore);
           this.userName = userData.body.name;
           this.menuType = 'user';
-          console.log("user Data", userData.body[0]);
-          
+          console.log('user Data', userData.body[0]);
+
           this._product.getCartList(userData.body[0].id);
         } else {
           this.menuType = 'default';
