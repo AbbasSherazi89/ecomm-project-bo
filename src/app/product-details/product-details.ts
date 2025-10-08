@@ -101,6 +101,19 @@ export class ProductDetails {
             this.removeCart = false;
           }
         }
+        let user = localStorage.getItem('user');
+        if (user) {
+          let userId = user && JSON.parse(user).body[0].id;
+          this._product.getCartList(userId);
+          this._product.cartData.subscribe((res) => {
+            let item = res.filter((prod: product) => {
+              return this.productId === prod.producId;
+            });
+            if (item.length) {
+              this.removeCart = true;
+            }
+          });
+        }
       });
     }
   }
@@ -128,7 +141,9 @@ export class ProductDetails {
         };
         delete cartData.id;
         this._product.addToCart(cartData).subscribe((res) => {
-          alert("Data added to cart");
+          alert('Data added to cart');
+          this._product.getCartList(userId);
+          this.removeCart = true;
         });
       }
     }

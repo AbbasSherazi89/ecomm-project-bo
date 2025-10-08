@@ -170,9 +170,9 @@ export class Header {
     if (cartData) {
       this.cartItems = JSON.parse(cartData).length;
     }
-    this._product.cartData.subscribe((res)=>{
-      this.cartItems=res.length;
-    })
+    this._product.cartData.subscribe((res) => {
+      this.cartItems = res.length;
+    });
   }
 
   handleRouteChange() {
@@ -206,6 +206,7 @@ export class Header {
       this.route.navigate(['/']);
     } else if (this.menuType === 'user') {
       this.route.navigate(['/user-auth']);
+      this._product.cartData.emit([]);
     }
   }
 
