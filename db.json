@@ -172,30 +172,6 @@
       "userId": "5821"
     },
     {
-      "id": "8591",
-      "name": "AMD Gaming Laptops",
-      "price": "$2444",
-      "category": "Laptops",
-      "color": "grey",
-      "description": "AMD Gaming Laptops",
-      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
-      "quantity": 1,
-      "producId": "d87f",
-      "userId": "5821"
-    },
-    {
-      "id": "b6b2",
-      "name": "AMD Gaming Laptops",
-      "price": "$2444",
-      "category": "Laptops",
-      "color": "grey",
-      "description": "AMD Gaming Laptops",
-      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
-      "quantity": 1,
-      "producId": "d87f",
-      "userId": "5821"
-    },
-    {
       "id": "99c3",
       "name": "AMD Gaming Laptops",
       "price": "$2444",
@@ -231,18 +207,6 @@
       "producId": "c8af"
     },
     {
-      "id": "99bd",
-      "name": "Apple iPhone 14 Pro 256GB",
-      "price": "$700",
-      "category": "Phones",
-      "color": "Mint color",
-      "description": "Apple iPhone 14 Pro 256GB",
-      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
-      "quantity": 1,
-      "producId": "52fb",
-      "userId": "5821"
-    },
-    {
       "id": "f74f",
       "name": "Nikon Z8 Mirrorless Camera",
       "price": "$300",
@@ -268,6 +232,18 @@
     },
     {
       "id": "ce64",
+      "name": "AMD Gaming Laptops",
+      "price": "$2444",
+      "category": "Laptops",
+      "color": "grey",
+      "description": "AMD Gaming Laptops",
+      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
+      "quantity": 1,
+      "producId": "d87f",
+      "userId": "5821"
+    },
+    {
+      "id": "adb2",
       "name": "AMD Gaming Laptops",
       "price": "$2444",
       "category": "Laptops",
