@@ -18,7 +18,14 @@ import { Product } from '../services/product';
             </li>
             <li>Product Name: {{ item.name }}</li>
             <li>Price: {{ item.price }}</li>
-            <li><button class="btn btn-outline-danger">Remove</button></li>
+            <li>
+              <button
+                class="btn btn-outline-danger"
+                (click)="removetoCartList(item)"
+              >
+                Remove
+              </button>
+            </li>
           </ul>
           }
         </div>
@@ -110,7 +117,7 @@ export class CartPage {
     this._product.currentCart().subscribe((res) => {
       this.cartData = res;
       let price = 0;
-      res.forEach((item) => {        
+      res.forEach((item) => {
         if (item.quantity) {
           price += this.parsePrice(item.price) * item.quantity;
         }
@@ -130,9 +137,15 @@ export class CartPage {
       deliveryCharges: delivery,
       total: price + tax + delivery - discount,
     };
-
-    console.log('Cart Summary:', this.cartSummary);
   }
+ removetoCartList(item: cart) {
+  if (item.id) {
+    this._product.removeToCart(item.id).subscribe((res)=>{
+      this.getUserCartList();
+    })
+  }
+}
+  // function to convert the string to number
   parsePrice(priceString: string): number {
     return parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
   }
