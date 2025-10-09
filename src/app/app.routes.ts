@@ -9,6 +9,7 @@ import { ProductDetails } from './product-details/product-details';
 import { UserAuth } from './user-auth/user-auth';
 import { CartPage } from './cart-page/cart-page';
 import { Checkout } from './checkout/checkout';
+import { MyOrders } from './my-orders/my-orders';
 
 export const routes: Routes = [
   {
@@ -35,23 +36,27 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    component:Search,
-    path:'search/:query'
+    component: Search,
+    path: 'search/:query',
   },
   {
-    component:ProductDetails,
-    path:'details/:productId'
+    component: ProductDetails,
+    path: 'details/:productId',
   },
   {
-    component:UserAuth,
-    path:'user-auth'
+    component: UserAuth,
+    path: 'user-auth',
   },
   {
-    component:CartPage,
-    path:'cart-page'
+    component: CartPage,
+    path: 'cart-page',
   },
   {
-    component:Checkout,
-    path:'checkout'
-  }
+    component: Checkout,
+    path: 'checkout',
+  },
+  {
+    component: MyOrders,
+    path: 'my-orders',
+  },
 ];
