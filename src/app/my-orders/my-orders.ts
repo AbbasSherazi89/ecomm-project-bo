@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { orderData } from '../seller-type';
+import { Product } from '../services/product';
 
 @Component({
   selector: 'app-my-orders',
@@ -51,4 +53,13 @@ import { Component } from '@angular/core';
   }
   `,
 })
-export class MyOrders {}
+export class MyOrders {
+  orderList: orderData[] | undefined;
+  constructor(private _product: Product) {}
+
+  ngOnInit() {
+    this._product.orderList().subscribe((res) => {
+      console.log(res);
+    });
+  }
+}
