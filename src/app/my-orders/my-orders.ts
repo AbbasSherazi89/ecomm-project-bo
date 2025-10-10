@@ -59,7 +59,7 @@ export class MyOrders {
 
   ngOnInit() {
     this._product.orderList().subscribe((res) => {
-      console.log(res);
+      this.orderList=res;
     });
   }
 }
