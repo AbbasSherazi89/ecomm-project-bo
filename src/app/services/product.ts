@@ -103,4 +103,10 @@ export class Product {
       `http://localhost:3000/orders?userId=${userData.id}`
     );
   }
+
+  deleteCartItems(cartId: string) {
+    return this.http.delete(`http://localhost:3000/cart/`+ cartId).subscribe((res)=>{
+      this.cartData.emit([]);
+    });
+  }
 }

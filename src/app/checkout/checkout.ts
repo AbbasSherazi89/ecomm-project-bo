@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../services/product';
-import { orderData } from '../seller-type';
+import { cart, orderData } from '../seller-type';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   imports: [FormsModule],
@@ -11,6 +12,8 @@ import { orderData } from '../seller-type';
       <div class="row">
         <div class="col-sm-7">
           <h3>Add shipping Address</h3>
+          <p class="message-p text-center">{{ orderMsg }}</p>
+          <p class=""></p>
           <form
             #orderData="ngForm"
             class="common-form"
@@ -66,7 +69,9 @@ import { orderData } from '../seller-type';
 })
 export class Checkout {
   totalPrice: number | undefined;
-  constructor(private _product: Product) {}
+  cartData: cart[] | undefined;
+  orderMsg: string | undefined;
+  constructor(private _product: Product, private router: Router) {}
   ngOnInit() {
     this.totalPriceOfItems();
   }
@@ -81,9 +86,20 @@ export class Checkout {
         userId: userId,
         id: undefined,
       };
+
+      this.cartData?.forEach((item) => {
+        setTimeout(() => {
+          item.id && this._product.deleteCartItems(item.id);
+        }, 500);
+      });
+
       this._product.orderNow(orderData).subscribe((res) => {
         if (res) {
-          console.log('Order Placed', res);
+          this.orderMsg = 'Order placed';
+          setTimeout(() => {
+            this.router.navigate(['/my-orders']);
+            this.orderMsg = undefined;
+          }, 3000);
         }
       });
     }
@@ -91,6 +107,7 @@ export class Checkout {
   totalPriceOfItems() {
     this._product.currentCart().subscribe((res) => {
       let price = 0;
+      this.cartData = res;
       res.forEach((item) => {
         if (item.quantity) {
           price += this.parsePrice(item.price) * item.quantity;
