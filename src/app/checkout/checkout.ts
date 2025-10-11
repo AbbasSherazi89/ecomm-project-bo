@@ -79,6 +79,7 @@ export class Checkout {
         ...data,
         totalPrice: this.totalPrice,
         userId: userId,
+        id: undefined,
       };
       this._product.orderNow(orderData).subscribe((res) => {
         if (res) {

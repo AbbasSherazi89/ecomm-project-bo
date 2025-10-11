@@ -42,10 +42,11 @@ export interface priceSummary {
   total: number;
 }
 
-export interface orderData{
-  email:string,
-  address:string,
-  contact:number,
-  totalPrice:number,
-  userId:string
+export interface orderData {
+  email: string;
+  address: string;
+  contact: number;
+  totalPrice: number;
+  userId: string;
+  id: string | undefined;
 }
