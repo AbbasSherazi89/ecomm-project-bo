@@ -121,7 +121,7 @@ export class CartPage {
     deliveryCharges: 0,
     total: 0,
   };
-  constructor(private _product: Product, private router:Router) {}
+  constructor(private _product: Product, private router: Router) {}
   ngOnInit() {
     this.getUserCartList();
   }
@@ -136,6 +136,9 @@ export class CartPage {
       });
       this.updateCartSummary(price);
     });
+    if (!this.cartData?.length) {
+      this.router.navigate(['/']);
+    }
   }
   updateCartSummary(price: number): void {
     const discount = price / 10;
@@ -163,6 +166,6 @@ export class CartPage {
   }
 
   checkout() {
-    this.router.navigate(['/checkout'])
+    this.router.navigate(['/checkout']);
   }
 }
