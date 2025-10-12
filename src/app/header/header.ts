@@ -50,6 +50,7 @@ import { FormsModule } from '@angular/forms';
             <span>{{ userName | titlecase }}</span>
           </li>
           <li><a (click)="logout()">Logout</a></li>
+          <li><a routerLink="/my-orders">My Orders</a></li>
           <li>
             <a routerLink="/cart-page">Cart({{ cartItems }})</a>
           </li>
