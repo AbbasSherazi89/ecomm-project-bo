@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   template: `
     <nav>
       <h1><a routerLink="">E-comm</a></h1>
-      @if (menuType === 'default') {
+      @if (menuType !== 'seller') {
       <div class="nav-search">
         <input
           #searchInput
