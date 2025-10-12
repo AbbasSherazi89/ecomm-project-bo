@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { cart, product, sellerType } from '../seller-type';
+import { cart, orderData, product, sellerType } from '../seller-type';
 import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -92,5 +92,27 @@ export class Product {
     return this.http.get<cart[]>(
       `http://localhost:3000/cart?userId=${userData.id}`
     );
+  }
+  orderNow(data: orderData) {
+    return this.http.post(`http://localhost:3000/orders`, data);
+  }
+  orderList() {
+    let userStore = localStorage.getItem('user');
+    let userData = userStore && JSON.parse(userStore).body[0];
+    return this.http.get<orderData[]>(
+      `http://localhost:3000/orders?userId=${userData.id}`
+    );
+  }
+
+  deleteCartItems(cartId: string) {
+    return this.http
+      .delete(`http://localhost:3000/cart/` + cartId)
+      .subscribe((res) => {
+        this.cartData.emit([]);
+      });
+  }
+
+  cancelOrder(orderId: string) {
+    return this.http.delete(`http://localhost:3000/orders/${orderId}`);
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { cart, priceSummary, product } from '../seller-type';
 import { Product } from '../services/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -53,6 +54,12 @@ import { Product } from '../services/product';
                 ><h4>$ {{ cartSummary.total }}</h4></span
               >
             </li>
+            <button
+              (click)="checkout()"
+              class="btn btn-outline-primary w-100 mt-3"
+            >
+              Checkout
+            </button>
           </ul>
           }
         </div>
@@ -68,6 +75,7 @@ import { Product } from '../services/product';
     }
     .details{
       border:1px solid #ddd;
+      border-radius:10px;
       img{
         height:100px;
       }
@@ -81,6 +89,9 @@ import { Product } from '../services/product';
         border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
       }
+      ul:last-child {
+        border-bottom: none;
+            }
     }
 
     .summary{
@@ -89,6 +100,7 @@ import { Product } from '../services/product';
       }
       ul{
         border: 1px solid #ddd;
+        border-radius:10px;
         padding: 20px;
         list-style:none;
       }
@@ -109,7 +121,7 @@ export class CartPage {
     deliveryCharges: 0,
     total: 0,
   };
-  constructor(private _product: Product) {}
+  constructor(private _product: Product, private router:Router) {}
   ngOnInit() {
     this.getUserCartList();
   }
@@ -138,15 +150,19 @@ export class CartPage {
       total: price + tax + delivery - discount,
     };
   }
- removetoCartList(item: cart) {
-  if (item.id) {
-    this._product.removeToCart(item.id).subscribe((res)=>{
-      this.getUserCartList();
-    })
+  removetoCartList(item: cart) {
+    if (item.id) {
+      this._product.removeToCart(item.id).subscribe((res) => {
+        this.getUserCartList();
+      });
+    }
   }
-}
   // function to convert the string to number
   parsePrice(priceString: string): number {
     return parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
+  }
+
+  checkout() {
+    this.router.navigate(['/checkout'])
   }
 }
