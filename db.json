@@ -180,22 +180,6 @@
       "phone": 415620243,
       "totalPrice": 2890,
       "userId": "5821"
-    },
-    {
-      "id": "dbcb",
-      "email": "abbas@gmail.com",
-      "address": "Kohat",
-      "phone": 302789447,
-      "totalPrice": 1600,
-      "userId": "5821"
-    },
-    {
-      "id": "cd4a",
-      "email": "ali@test.com",
-      "address": "Peshawar",
-      "phone": 2344882666,
-      "totalPrice": 2500,
-      "userId": "5821"
     }
   ]
 }

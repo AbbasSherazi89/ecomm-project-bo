@@ -105,8 +105,14 @@ export class Product {
   }
 
   deleteCartItems(cartId: string) {
-    return this.http.delete(`http://localhost:3000/cart/`+ cartId).subscribe((res)=>{
-      this.cartData.emit([]);
-    });
+    return this.http
+      .delete(`http://localhost:3000/cart/` + cartId)
+      .subscribe((res) => {
+        this.cartData.emit([]);
+      });
+  }
+
+  cancelOrder(orderId: string) {
+    return this.http.delete(`http://localhost:3000/orders/${orderId}`);
   }
 }

@@ -33,7 +33,9 @@ import { Product } from '../services/product';
         </div>
         <div class="col-sm-2"><p>Inprogress</p></div>
         <div class="col-sm-2">
-          <button class="form-btn">Cancel order</button>
+          <button class="form-btn" (click)="cancelOrders(item.id)">
+            Cancel order
+          </button>
         </div>
       </div>
       }
@@ -61,6 +63,18 @@ export class MyOrders {
   constructor(private _product: Product) {}
 
   ngOnInit() {
+    this.getOrderList();
+  }
+
+  cancelOrders(orderId: string | undefined) {
+    orderId &&
+      this._product.cancelOrder(orderId).subscribe((res) => {
+        if (res) {
+          this.getOrderList();
+        }
+      });
+  }
+  getOrderList() {
     this._product.orderList().subscribe((res) => {
       this.orderList = res;
     });
