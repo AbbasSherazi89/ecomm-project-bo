@@ -145,6 +145,7 @@ export class CartPage {
           this.processCartData(res);
         } else {
           this.cartData = [];
+          this.router.navigate(['/']);
           this.updateCartSummary(0);
         }
       },

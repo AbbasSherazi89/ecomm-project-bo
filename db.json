@@ -146,30 +146,6 @@
       "quantity": 2,
       "producId": "52fb",
       "userId": "2894"
-    },
-    {
-      "id": "2da7",
-      "name": "Evolution Smart Watch - Black-Metal",
-      "price": "$200",
-      "category": "watch",
-      "color": "Black",
-      "description": "Evolution Smart Watch - Black-Metal",
-      "image": "https://danytech.com.pk/cdn/shop/files/Evolution-ThumbnailImage-2_3_copy.png?v=1731505750",
-      "quantity": 1,
-      "producId": "8f5e",
-      "userId": "5821"
-    },
-    {
-      "id": "d05e",
-      "name": "Men's Tennis Shoes",
-      "price": "$200",
-      "category": "shoes",
-      "color": "grey & white",
-      "description": "Men's Tennis Shoes | K-Swiss – K-Swiss US",
-      "image": "https://kswiss.com/cdn/shop/files/04432-425-original_978c9af1-8588-448e-b9da-a28d8b5caac9.png?v=1758613018&width=800",
-      "quantity": 1,
-      "producId": "6869",
-      "userId": "5821"
     }
   ],
   "orders": [
