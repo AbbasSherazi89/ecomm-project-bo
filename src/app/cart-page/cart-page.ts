@@ -140,7 +140,6 @@ export class CartPage {
 
     this._product.currentCart(userData).subscribe({
       next: (res) => {
-        console.log(res);
         if (res && res.length > 0) {
           this.processCartData(res);
         } else {
