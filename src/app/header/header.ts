@@ -39,7 +39,7 @@ import { FormsModule } from '@angular/forms';
           <li><a routerLink="">Home</a></li>
           <li><a routerLink="/user-auth">Login/SignUp</a></li>
           <li>
-            <a routerLink="/cart-page">Cart({{ cartItems }})</a>
+            <a (click)="navigateToCartPage()">Cart({{ cartItems }})</a>
           </li>
         </ul>
         } @case('user'){
@@ -199,6 +199,10 @@ export class Header {
         }
       }
     });
+  }
+
+  navigateToCartPage(){
+    this.route.navigate(['/cart-page'])
   }
 
   logout() {
