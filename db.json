@@ -15,147 +15,87 @@
   ],
   "products": [
     {
-      "name": "AMD Gaming Laptops",
-      "price": "$2444",
+      "id": "b9b9",
+      "name": "Meet the Surface Laptop ",
+      "price": "$2567",
       "category": "Laptops",
       "color": "grey",
-      "description": "AMD Gaming Laptops",
-      "image": "http://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16250/media-gallery/fpr/notebook-db16250nt-fpr-bl-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
-      "id": "d87f"
+      "description": "Meet the Surface Laptop – An ultralight AI touchscreen laptop | Microsoft Surface",
+      "image": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-platinum-right-render-fy25:VP4-1260x795?fmt=png-alpha",
+      "sellerId": "8919"
     },
     {
-      "name": "Evolution Smart Watch - Black-Metal",
+      "name": "X-powered laptops",
+      "price": "$3289",
+      "category": "Laptops",
+      "color": "grey",
+      "description": "Here are the first Qualcomm Snapdragon X-powered laptops",
+      "image": "https://substackcdn.com/image/fetch/$s_!tb-I!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b882fac-8338-4fea-bcec-4255805abe2b_1920x1080.png",
+      "sellerId": "8919",
+      "id": "7cae"
+    },
+    {
+      "name": "Sparx Smartphone",
+      "price": "$500",
+      "category": "Phones",
+      "color": "grey",
+      "description": "Sparx introduces budget-friendly latest mobile phones in Pakistan – Sparx Smartphone",
+      "image": "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1759154737608/233b8b84c744d82188c8d89d4557faaa.png",
+      "sellerId": "8919",
+      "id": "0015"
+    },
+    {
+      "id": "59c9",
+      "name": "Google phone",
+      "price": "$2330",
+      "category": "Phones",
+      "color": "grey",
+      "description": "Android | Do More With Google on Android Phones & Devices",
+      "image": "https://storage.googleapis.com/wayfinder-datalayer-public-bucket/cp_asset/img_assets/google_pixel_10_pro_fold_en_us/a2a_desktop_08_09_17_20_45.webp",
+      "sellerId": "8919"
+    },
+    {
+      "id": "23b4",
+      "name": "Sveston Smart Watches",
+      "price": "$700",
+      "category": "watch",
+      "color": "silver",
+      "description": "Sveston Smart Watches Price in Pakistan 2025 - Sveston – Sveston PK",
+      "image": "https://cdn.shopify.com/s/files/1/0003/5815/4293/files/Torque_Cam002_V1.png?v=1752775024",
+      "sellerId": "8919"
+    },
+    {
+      "id": "b5a0",
+      "name": "Ronin Smart watch",
       "price": "$200",
       "category": "watch",
-      "color": "Black",
-      "description": "Evolution Smart Watch - Black-Metal",
-      "image": "https://danytech.com.pk/cdn/shop/files/Evolution-ThumbnailImage-2_3_copy.png?v=1731505750",
-      "id": "8f5e"
-    },
-    {
-      "name": "Apple iPhone 14 Pro 256GB",
-      "price": "$700",
-      "category": "Phones",
-      "color": "Mint color",
-      "description": "Apple iPhone 14 Pro 256GB",
-      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
-      "id": "52fb"
-    },
-    {
-      "id": "6869",
-      "name": "Men's Tennis Shoes",
-      "price": "$200",
-      "category": "shoes",
-      "color": "grey & white",
-      "description": "Men's Tennis Shoes | K-Swiss – K-Swiss US",
-      "image": "https://kswiss.com/cdn/shop/files/04432-425-original_978c9af1-8588-448e-b9da-a28d8b5caac9.png?v=1758613018&width=800"
-    },
-    {
-      "id": "c8af",
-      "name": "Nikon Z8 Mirrorless Camera",
-      "price": "$300",
-      "category": "Camers",
       "color": "black",
-      "description": "Nikon Z8 Mirrorless Camera - Nikon Pakistan",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzd__6Nt_fYgZcWUAj0YNH5ZLTO_WTZWh_eg&s"
+      "description": "Buy Ronin Smart Watches Online at Best Price in Pakistan",
+      "image": "https://ronin.pk/cdn/shop/collections/8.png?v=1705984214",
+      "sellerId": "8919"
     },
     {
-      "id": "7409",
-      "name": "TCL Laptops",
-      "price": "$1002",
-      "category": "Laptop",
-      "color": "Black",
-      "description": "TCL Laptops-Octa-Core processor Long-lasting battery-TCL Global",
-      "image": "https://aws-obg-image-lb-2.tcl.com/content/dam/brandsite/region/global/products/laptop/category-display/tcl-book-14-go-pc.png?t=1661332526063&w=800&webp=undefined&dpr=2.625&rendition=1068"
+      "id": "591c",
+      "name": "The Genuine Leather Jacket",
+      "price": "$328",
+      "category": "Clothes",
+      "color": "brown",
+      "description": "The Genuine Leather Online Jackets & Coats for Men and Women",
+      "image": "https://thegenuineleather.com/wp-content/uploads/2024/09/Group-48095566.webp",
+      "sellerId": "229b"
     },
     {
-      "id": "3156",
-      "name": "Meet the Surface Laptop",
-      "price": "$1290",
-      "category": "Laptopps",
-      "color": "grey",
-      "description": "Meet the Surface Laptop – An ultralight AI touchscreen laptop | Microsoft Surface",
-      "image": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-platinum-right-render-fy25:VP4-1260x795?fmt=png-alpha"
-    },
-    {
-      "id": "8ff5",
-      "name": "Toys and Chemicals",
-      "price": "$190",
-      "category": "Toy",
-      "color": "orange and many more",
-      "description": "Toys and Chemicals: Regulations to Help Keep Kids Safe - Chemical Safety Facts",
-      "image": "https://www.chemicalsafetyfacts.org/wp-content/uploads/shutterstock_383521510-002-scaled.jpg"
-    },
-    {
-      "id": "77b1",
-      "name": "Glided Chain Sandal",
-      "price": "$300",
-      "category": "Cyndals",
-      "color": "Skin color",
-      "description": "Glided Chain Sandal",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg4ZArWmqTVjfRpKA4j1ML-7lv1obQ0iAgDA&s"
+      "id": "c5fb",
+      "name": "Adidas Shoes",
+      "price": "$ 500",
+      "category": "shoes",
+      "color": "black",
+      "description": "Buy Adidas Shoes and Footwear for men Online in Pakistan – SPL - Speed (Pvt.) Ltd.",
+      "image": "https://speedsports.pk/cdn/shop/files/JQ6899_1_FOOTWEAR_Photography_SideLateralCenterView_transparent.png?v=1754996090&width=600",
+      "sellerId": "229b"
     }
   ],
-  "user": [
-    {
-      "id": "39d7",
-      "name": "Apple iPhone 14 Pro 256GB",
-      "email": "T.L.Henderson70@outlook.com",
-      "password": "123123"
-    },
-    {
-      "id": "5821",
-      "name": "Watch",
-      "email": "abbas@gmail.com",
-      "password": "123123"
-    },
-    {
-      "id": "af2e",
-      "name": "Laptop",
-      "email": "ali@test.com",
-      "password": "123123"
-    },
-    {
-      "id": "7249",
-      "name": "apple watch",
-      "email": "T.L.Henderson70@outlook.com",
-      "password": "123123"
-    },
-    {
-      "id": "8708",
-      "name": "Abbas",
-      "email": "anoopjoy_para@ymail.com",
-      "password": "123123"
-    },
-    {
-      "id": "2894",
-      "name": "hello",
-      "email": "hello@test.com",
-      "password": "123123"
-    }
-  ],
-  "cart": [
-    {
-      "id": "2f88",
-      "name": "Apple iPhone 14 Pro 256GB",
-      "price": "$700",
-      "category": "Phones",
-      "color": "Mint color",
-      "description": "Apple iPhone 14 Pro 256GB",
-      "image": "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-13-pro-sierra-blue-back.png?v=e449b87a",
-      "quantity": 2,
-      "producId": "52fb",
-      "userId": "2894"
-    }
-  ],
-  "orders": [
-    {
-      "id": "b989",
-      "email": "anoopjoy_para@ymail.com",
-      "address": "32",
-      "phone": 415620243,
-      "totalPrice": 2890,
-      "userId": "5821"
-    }
-  ]
+  "user": [],
+  "cart": [],
+  "orders": []
 }

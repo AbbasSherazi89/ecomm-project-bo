@@ -84,6 +84,7 @@ export class SellerAddProduct {
   productMessage: string | undefined;
   isEditMode = false;
   productId: string = '';
+  currentSellerId = '';
   constructor(
     private _product: Product,
     private route: ActivatedRoute,
@@ -91,10 +92,18 @@ export class SellerAddProduct {
   ) {}
 
   ngOnInit(): void {
+    this.getCurrentSellerId();
     this.productId = this.route.snapshot.paramMap.get('id')!;
     this.isEditMode = !!this.productId;
     if (this.isEditMode) {
       this.loadProductData();
+    }
+  }
+
+  getCurrentSellerId() {
+    const sellerData = localStorage.getItem('seller');
+    if (sellerData) {
+      this.currentSellerId = JSON.parse(sellerData)[0].id;
     }
   }
 
@@ -112,10 +121,16 @@ export class SellerAddProduct {
   }
 
   submit(data: product) {
+    const productData = {
+      ...data,
+      sellerId: this.currentSellerId,
+    };
+    console.log('Product data:', productData);
+
     if (this.isEditMode) {
-      this.updateProduct(data);
+      this.updateProduct(productData);
     } else {
-      this.addNewProduct(data);
+      this.addNewProduct(productData);
     }
     setTimeout(() => {
       this.productMessage = undefined;
