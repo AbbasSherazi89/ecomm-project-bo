@@ -205,11 +205,7 @@ export class UserAuth {
         };
         delete cartData.id;
         setTimeout(() => {
-          this._product.addToCart(cartData).subscribe((res) => {
-            if (res) {
-              alert('Data added to cart');
-            }
-          });
+          this._product.addToCart(cartData);
         }, 1000);
         if (cartDataList.length === index + 1) {
           localStorage.removeItem('localCart');

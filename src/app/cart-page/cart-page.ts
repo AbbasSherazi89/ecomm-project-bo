@@ -121,21 +121,52 @@ export class CartPage {
     deliveryCharges: 0,
     total: 0,
   };
-  constructor(private _product: Product, private router:Router) {}
+  constructor(private _product: Product, private router: Router) {}
   ngOnInit() {
     this.getUserCartList();
   }
   getUserCartList() {
-    this._product.currentCart().subscribe((res) => {
-      this.cartData = res;
-      let price = 0;
-      res.forEach((item) => {
-        if (item.quantity) {
-          price += this.parsePrice(item.price) * item.quantity;
+    const userStore = localStorage.getItem('user');
+    const userData = userStore ? JSON.parse(userStore).body[0] : null;
+    const localData = localStorage.getItem('localCart');
+    if (localData) {
+      this.processCartData(JSON.parse(localData));
+      return;
+    }
+    if (!userData) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    this._product.currentCart(userData).subscribe({
+      next: (res) => {
+        if (res && res.length > 0) {
+          this.processCartData(res);
+        } else {
+          this.cartData = [];
+          this.router.navigate(['/']);
+          this.updateCartSummary(0);
         }
-      });
-      this.updateCartSummary(price);
+      },
+      error: (error) => {
+        console.error('Error fetching cart:', error);
+        this.cartData = [];
+        this.updateCartSummary(0);
+      },
     });
+  }
+
+  processCartData(cartItems: any[]) {
+    this.cartData = cartItems;
+    let totalPrice = 0;
+
+    cartItems.forEach((item) => {
+      if (item.quantity) {
+        totalPrice += this.parsePrice(item.price) * item.quantity;
+      }
+    });
+
+    this.updateCartSummary(totalPrice);
   }
   updateCartSummary(price: number): void {
     const discount = price / 10;
@@ -158,11 +189,16 @@ export class CartPage {
     }
   }
   // function to convert the string to number
-  parsePrice(priceString: string): number {
-    return parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
+  parsePrice(price: any): number {
+    if (typeof price === 'number') return price;
+    if (typeof price === 'string') {
+      const parsed = parseFloat(price.replace(/[^\d.-]/g, ''));
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    return 0;
   }
 
   checkout() {
-    this.router.navigate(['/checkout'])
+    this.router.navigate(['/checkout']);
   }
 }

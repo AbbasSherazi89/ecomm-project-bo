@@ -105,17 +105,17 @@ export class Checkout {
     }
   }
   totalPriceOfItems() {
-    this._product.currentCart().subscribe((res) => {
-      let price = 0;
-      this.cartData = res;
-      res.forEach((item) => {
-        if (item.quantity) {
-          price += this.parsePrice(item.price) * item.quantity;
-        }
-      });
-      this.totalPrice = price + price / 10 + 200 - price / 10;
-      console.log(this.totalPrice);
-    });
+    // this._product.currentCart().subscribe((res) => {
+    //   let price = 0;
+    //   this.cartData = res;
+    //   res.forEach((item) => {
+    //     if (item.quantity) {
+    //       price += this.parsePrice(item.price) * item.quantity;
+    //     }
+    //   });
+    //   this.totalPrice = price + price / 10 + 200 - price / 10;
+    //   console.log(this.totalPrice);
+    // });
   }
 
   // function to convert the string to number

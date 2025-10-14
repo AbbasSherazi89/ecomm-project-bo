@@ -13,7 +13,11 @@ export class Product {
     return this.http.post(`http://localhost:3000/products`, data);
   }
   productList() {
-    return this.http.get<product[]>(`http://localhost:3000/products`);
+    let sellerData = localStorage.getItem('seller')!;
+    let sellerId = JSON.parse(sellerData)[0].id;
+    return this.http.get<product[]>(
+      `http://localhost:3000/products?sellerId=${sellerId}`
+    );
   }
   deleteProduct(id: any) {
     return this.http.delete(`http://localhost:3000/products/${id}`);
@@ -86,9 +90,7 @@ export class Product {
   removeToCart(cartId: string) {
     return this.http.delete(`http://localhost:3000/cart/${cartId}`);
   }
-  currentCart() {
-    let userStore = localStorage.getItem('user');
-    let userData = userStore && JSON.parse(userStore).body[0];
+  currentCart(userData: cart) {
     return this.http.get<cart[]>(
       `http://localhost:3000/cart?userId=${userData.id}`
     );
