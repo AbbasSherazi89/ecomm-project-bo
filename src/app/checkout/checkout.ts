@@ -114,7 +114,6 @@ export class Checkout {
     //     }
     //   });
     //   this.totalPrice = price + price / 10 + 200 - price / 10;
-    //   console.log(this.totalPrice);
     // });
   }
 
