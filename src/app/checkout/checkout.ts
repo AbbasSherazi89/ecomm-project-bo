@@ -105,16 +105,18 @@ export class Checkout {
     }
   }
   totalPriceOfItems() {
-    // this._product.currentCart().subscribe((res) => {
-    //   let price = 0;
-    //   this.cartData = res;
-    //   res.forEach((item) => {
-    //     if (item.quantity) {
-    //       price += this.parsePrice(item.price) * item.quantity;
-    //     }
-    //   });
-    //   this.totalPrice = price + price / 10 + 200 - price / 10;
-    // });
+    const userStore = localStorage.getItem('user');
+    const userData = userStore ? JSON.parse(userStore).body[0] : null;
+    this._product.currentCart(userData).subscribe((res) => {
+      let price = 0;
+      this.cartData = res;
+      res.forEach((item) => {
+        if (item.quantity) {
+          price += this.parsePrice(item.price) * item.quantity;
+        }
+      });
+      this.totalPrice = price + price / 10 + 200 - price / 10;
+    });
   }
 
   // function to convert the string to number
