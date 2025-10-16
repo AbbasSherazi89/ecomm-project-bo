@@ -95,7 +95,67 @@
       "sellerId": "229b"
     }
   ],
-  "user": [],
-  "cart": [],
+  "user": [
+    {
+      "id": "e29c",
+      "name": "Abbas",
+      "email": "abbas@gmail.com",
+      "password": "123123"
+    }
+  ],
+  "cart": [
+    {
+      "id": "9348",
+      "name": "Google phone",
+      "price": "$2330",
+      "category": "Phones",
+      "color": "grey",
+      "description": "Android | Do More With Google on Android Phones & Devices",
+      "image": "https://storage.googleapis.com/wayfinder-datalayer-public-bucket/cp_asset/img_assets/google_pixel_10_pro_fold_en_us/a2a_desktop_08_09_17_20_45.webp",
+      "sellerId": "8919",
+      "quantity": 1,
+      "producId": "59c9",
+      "userId": "e29c"
+    },
+    {
+      "id": "6caa",
+      "name": "Sveston Smart Watches",
+      "price": "$700",
+      "category": "watch",
+      "color": "silver",
+      "description": "Sveston Smart Watches Price in Pakistan 2025 - Sveston – Sveston PK",
+      "image": "https://cdn.shopify.com/s/files/1/0003/5815/4293/files/Torque_Cam002_V1.png?v=1752775024",
+      "sellerId": "8919",
+      "quantity": 1,
+      "producId": "23b4",
+      "userId": "e29c"
+    },
+    {
+      "id": "1209",
+      "name": "The Genuine Leather Jacket",
+      "price": "$328",
+      "category": "Clothes",
+      "color": "brown",
+      "description": "The Genuine Leather Online Jackets & Coats for Men and Women",
+      "image": "https://thegenuineleather.com/wp-content/uploads/2024/09/Group-48095566.webp",
+      "sellerId": "229b",
+      "quantity": 1,
+      "producId": "591c",
+      "userId": "e29c"
+    },
+    {
+      "id": "a8ad",
+      "name": "Ronin Smart watch",
+      "price": "$200",
+      "category": "watch",
+      "color": "black",
+      "description": "Buy Ronin Smart Watches Online at Best Price in Pakistan",
+      "image": "https://ronin.pk/cdn/shop/collections/8.png?v=1705984214",
+      "sellerId": "8919",
+      "quantity": 2,
+      "producId": "b5a0",
+      "userId": "e29c"
+    }
+  ],
   "orders": []
 }
