@@ -59,4 +59,8 @@ export const routes: Routes = [
     component: MyOrders,
     path: 'my-orders',
   },
+    {
+    path: '**',
+    redirectTo: ''
+  }
 ];
