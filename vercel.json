@@ -1,19 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "dist/ecom-project/**",
-      "use": "@vercel/static"
-    }
-  ],
+  "outputDirectory": "dist/ecom-project",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/dist/ecom-project/index.html"
+      "dest": "/index.html"
     }
   ]
 }
